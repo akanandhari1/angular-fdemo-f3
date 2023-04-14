@@ -211,7 +211,7 @@ export class BookAppointmentComponent implements OnInit {
   openSnackBar(errorMessage = '', action = 'success') {
     this._snackBar.open(errorMessage, 'Close', {
       panelClass: action == 'success' ? 'success-snackbar' : 'failure-snackbar',
-      duration: 26000,
+      duration: 6000,
       verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
       horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
     });
