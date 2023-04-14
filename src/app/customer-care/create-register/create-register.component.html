@@ -59,7 +59,7 @@
           <input
             matInput
             formControlName="AgentNo"
-            type="number"
+            NumberOnly
             onKeyPress="if(this.value.length==10) return false;"
           />
           <mat-icon matPrefix>call</mat-icon>
@@ -116,7 +116,7 @@
           <input
             matInput
             formControlName="CutomerNo"
-            type="number"
+            NumberOnly
             required
             onKeyPress="if(this.value.length==10) return false;"
           />
@@ -164,7 +164,7 @@
           <mat-label>Pincode</mat-label>
           <input
             matInput
-            type="number"
+            NumberOnly
             formControlName="Pincode"
             onKeyPress="if(this.value.length==6) return false;"
             required

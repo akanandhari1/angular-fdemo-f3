@@ -35,6 +35,7 @@ import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 import { ScheduleHistoryComponent } from './customer-care/schedule-history/schedule-history.component';
 import { MultiselectAutoCompleteComponent } from './shared/multiselect-auto-complete/multiselect-auto-complete.component';
 import { MatFormFieldControl } from '@angular/material/form-field';
+import { NumberOnlyDirective } from './shared/number-only.directive';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MatFormFieldControl } from '@angular/material/form-field';
     SelectComponent,
     ScheduleHistoryComponent,
     MultiselectAutoCompleteComponent,
+    NumberOnlyDirective,
   ],
   imports: [
     AppRouterModule,
