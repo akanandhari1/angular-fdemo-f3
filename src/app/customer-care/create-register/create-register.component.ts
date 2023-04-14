@@ -150,7 +150,7 @@ export class CreateRegisterComponent implements OnInit {
   }
   reset() {
     this.form.reset();
-    this.form.setValue({}, { emitEvent: false });
+    //this.form.setValue({}, { emitEvent: false });
     this.labTests = [];
     // this.labTests = [];
     this.labTestCtrl.reset();
