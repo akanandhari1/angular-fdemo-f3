@@ -146,7 +146,7 @@
             </mat-chip-list>
             <mat-autocomplete
               #auto="matAutocomplete"
-              (optionSelected)="selected($event, appointment.test,i)"
+              (optionSelected)="selected($event, appointment.test, i)"
               autoActiveFirstOption
             >
               <mat-option
@@ -165,7 +165,7 @@
               mat-icon-button
               matSuffix
               style="width: 34px; height: 34px"
-              (click)="openAuto(autocompleteTrigger,i)"
+              (click)="openAuto(autocompleteTrigger, i)"
             >
               <mat-icon style="width: 34px">expand_more</mat-icon>
             </button>

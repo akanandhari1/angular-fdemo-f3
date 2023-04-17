@@ -166,30 +166,38 @@ export class BookAppointmentComponent implements OnInit {
     this.appointments.appointments.splice(i, 1);
   }
   deleteDc(appointment: Appointment) {
-    appointment.dcDetails = undefined;
+    appointment.dcDetails = new DcDetails();
   }
   validateAppointment(): any {
     if (this.appointments.appointments.length > 0) {
       let isValid = true;
       this.appointments.appointments.forEach((oAp: any) => {
-        for (let obj in new Appointment()) {
-          console.log(oAp);
-          if (
-            oAp[obj] != undefined &&
-            oAp[obj].length > 0 &&
-            oAp?.PreferredTime !== undefined
-          ) {
-            if (oAp?.typeOfVisit == 'DC Visit') {
-              if (oAp?.dcDetails !== undefined) {
-                isValid = true;
-              } else {
-                isValid = false;
-              }
-            } else {
-              isValid = true;
-            }
-          } else {
+        if (oAp.test != undefined && oAp.test.length > 0) {
+        } else {
+          isValid = false;
+          return;
+        }
+        if (!oAp['typeOfVisit'] || oAp['typeOfVisit'].length == 0) {
+          isValid = false;
+          return;
+        }
+        if (!oAp['PreferredDate'] || oAp['PreferredDate'].length == 0) {
+          isValid = false;
+          return;
+        }
+        if (!oAp['PreferredTime'] || oAp['PreferredTime'].length == 0) {
+          isValid = false;
+          return;
+        }
+
+        if (oAp['typeOfVisit'] == 'DC Visit') {
+          if (!oAp['dcDetails']) {
             isValid = false;
+            return;
+          }
+          if (oAp['dcDetails'] && oAp['dcDetails'].name.length == 0) {
+            isValid = false;
+            return;
           }
         }
       });
