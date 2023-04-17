@@ -49,7 +49,7 @@ export class InsuranceProvider {
       AgentCode: [{ value: data.AgentCode, disabled: disableField }],
       AgentNumber: [
         { value: data.AgentNumber, disabled: disableField },
-        [Validators.maxLength(10)],
+        [Validators.maxLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
       ],
       CustomerName: [{ value: data.CustomerName, disabled: disableField }],
       Gender: [
@@ -59,7 +59,7 @@ export class InsuranceProvider {
       DOB: [{ value: data.DOB, disabled: disableField }],
       CustomerNo: [
         { value: data.CustomerNo || '', disabled: disableField },
-        [Validators.maxLength(10)],
+        [Validators.maxLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
       ],
       City: [
         { value: data.City || '', disabled: disableField },
@@ -71,7 +71,11 @@ export class InsuranceProvider {
       ],
       Pincode: [
         { value: data.Pincode || '', disabled: disableField },
-        [Validators.required, Validators.maxLength(10)],
+        [
+          Validators.required,
+          Validators.maxLength(10),
+          Validators.pattern('^((?!(0))[0-9]{6})$'),
+        ],
       ],
       LabTests: [
         { value: data.LabTests || '', disabled: disableField },
@@ -80,4 +84,3 @@ export class InsuranceProvider {
     });
   }
 }
-

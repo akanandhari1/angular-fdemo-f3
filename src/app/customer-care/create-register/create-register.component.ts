@@ -127,24 +127,25 @@ export class CreateRegisterComponent implements OnInit {
       AgentCode: [null],
       AgentNo: [
         null,
-        [
-          Validators.minLength(10),
-          Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
-        ],
+        [Validators.minLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
       ],
       CustomerName: [null],
       Gender: [null, [Validators.required]],
       DOB: [null],
       CutomerNo: [
         null,
-        [
-          Validators.minLength(10),
-          Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
-        ],
+        [Validators.minLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
       ],
       city: [null, [Validators.required]],
       State: [null, [Validators.required]],
-      Pincode: [null, [Validators.required, Validators.maxLength(6)]],
+      Pincode: [
+        null,
+        [
+          Validators.required,
+          Validators.maxLength(6),
+          Validators.pattern('^((?!(0))[0-9]{6})$'),
+        ],
+      ],
       LabTests: [[], [Validators.required]],
     });
   }

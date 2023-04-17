@@ -27,7 +27,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Policy ID</mat-label>
-          <input matInput formControlName="PolicyNo" />
+          <input matInput formControlName="PolicyNo" alphaNumeric />
           <mat-icon matPrefix>policy_outlined</mat-icon>
           <mat-error
             ><span
@@ -41,17 +41,17 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Member ID</mat-label>
-          <input matInput formControlName="MemberId" />
+          <input matInput formControlName="MemberId" alphaNumeric />
           <mat-icon matPrefix>card_membership_outlined </mat-icon>
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Agent Name</mat-label>
-          <input matInput formControlName="AgentName" />
+          <input matInput formControlName="AgentName" alphabetOnly />
           <mat-icon matPrefix> person_pin</mat-icon>
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Agent Code</mat-label>
-          <input matInput formControlName="AgentCode" />
+          <input matInput formControlName="AgentCode" alphaNumeric />
           <mat-icon matPrefix> confirmation_number</mat-icon>
         </mat-form-field>
         <mat-form-field class="flex-item">
@@ -75,7 +75,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Customer Name</mat-label>
-          <input matInput formControlName="CustomerName" />
+          <input matInput formControlName="CustomerName" alphabetOnly />
           <mat-icon matPrefix> person_pin</mat-icon>
         </mat-form-field>
         <mat-form-field class="flex-item">

@@ -3,7 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialExampleModule } from '../material.module';
 import { AppComponent } from './app.component';
-import { FormsModule, ReactiveFormsModule ,NG_VALIDATORS} from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  NG_VALIDATORS,
+} from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { IProviderComponent } from './provider/i-provider/i-provider.component';
@@ -36,6 +40,10 @@ import { ScheduleHistoryComponent } from './customer-care/schedule-history/sched
 import { MultiselectAutoCompleteComponent } from './shared/multiselect-auto-complete/multiselect-auto-complete.component';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { NumberOnlyDirective } from './shared/number-only.directive';
+import {
+  AlphaNumericDirective,
+  AlphabetDirective,
+} from './shared/alpha-numeric.directive';
 
 @NgModule({
   declarations: [
@@ -62,6 +70,8 @@ import { NumberOnlyDirective } from './shared/number-only.directive';
     ScheduleHistoryComponent,
     MultiselectAutoCompleteComponent,
     NumberOnlyDirective,
+    AlphaNumericDirective,
+    AlphabetDirective,
   ],
   imports: [
     AppRouterModule,
@@ -80,12 +90,12 @@ import { NumberOnlyDirective } from './shared/number-only.directive';
   providers: [
     ConfirmationDialogService,
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-    
+
     {
       provide: NG_VALIDATORS,
       useExisting: forwardRef(() => MultiselectAutoCompleteComponent),
-      multi: true
-    }
+      multi: true,
+    },
   ],
   entryComponents: [
     ConfirmationDialogComponent,
