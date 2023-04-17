@@ -42,7 +42,7 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 import { NumberOnlyDirective } from './shared/number-only.directive';
 import {
   AlphaNumericDirective,
-  AlphabetDirective,
+  AlphabetDirective,CustomerAlphabetDirective
 } from './shared/alpha-numeric.directive';
 
 @NgModule({
@@ -72,6 +72,7 @@ import {
     NumberOnlyDirective,
     AlphaNumericDirective,
     AlphabetDirective,
+    CustomerAlphabetDirective
   ],
   imports: [
     AppRouterModule,

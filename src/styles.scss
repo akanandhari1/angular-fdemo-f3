@@ -360,6 +360,9 @@ input::placeholder,
     margin: 5px !important;
     width: 200px;
   }
+  .flex-item-bigger {
+    width: 400px !important;
+  }
 }
 
 /* For Tablet View */
@@ -377,5 +380,8 @@ input::placeholder,
   .mat-form-field {
     margin: 5px !important;
     width: 180px;
+  }
+  .flex-item-bigger {
+    width: 350px !important;
   }
 }

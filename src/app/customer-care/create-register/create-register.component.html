@@ -75,7 +75,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Customer Name</mat-label>
-          <input matInput formControlName="CustomerName" alphabetOnly />
+          <input matInput formControlName="CustomerName" alphabetwithSpecial />
           <mat-icon matPrefix> person_pin</mat-icon>
         </mat-form-field>
         <mat-form-field class="flex-item">
@@ -212,7 +212,7 @@
           <mat-icon matPrefix> find_in_page</mat-icon>
         </mat-form-field> -->
 
-        <mat-form-field class="flex-item">
+        <mat-form-field class="flex-item flex-item-bigger">
           <mat-label>Lab Tests</mat-label>
           <mat-icon matPrefix> monitor_heart </mat-icon>
           <mat-chip-list #chipList formControlName="LabTests">

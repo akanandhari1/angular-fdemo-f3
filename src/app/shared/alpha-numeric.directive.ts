@@ -62,3 +62,36 @@ export class AlphabetDirective {
     }
   }
 }
+// [a-zA-Z,', ,-]
+
+@Directive({
+  selector: '[alphabetwithSpecial]',
+})
+export class CustomerAlphabetDirective {
+  private regex: RegExp = new RegExp(/^[a-z,', ,/-]+$/i);
+  private specialKeys: Array<string> = [
+    'Backspace',
+    'Tab',
+    'End',
+    'Home',
+    'ArrowUp',
+    'ArrowDown',
+    'Space',
+  ];
+
+  constructor(private el: ElementRef) {}
+  @HostListener('keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    // Allow Backspace, tab, end, and home keys
+    if (this.specialKeys.indexOf(event.key) !== -1) {
+      return;
+    }
+    let current: string = this.el.nativeElement.value;
+    // console.log(current.length);
+    let next: string = current.concat(event.key);
+
+    if (next && !String(next).match(this.regex)) {
+      event.preventDefault();
+    }
+  }
+}
