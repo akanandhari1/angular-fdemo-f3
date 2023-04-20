@@ -204,11 +204,15 @@ export class CustomerDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(RoResponseComponent, { data: '' });
     dialogRef.afterClosed().subscribe((result: Appointments) => {
       if (result) {
-        console.log(result);
-        // this.appointments = result;
-        this.appointments.status = 'No Response';
+        if (result) {
+          // this.appointments = result;
+          if (!this.appointments) {
+            this.appointments = new Appointments();
+          }
+          this.appointments.status = 'No Response';
 
-        this.Status_NoResponse = true;
+          this.Status_NoResponse = true;
+        }
         // this.showAppoinment = false;
       }
     });
@@ -251,8 +255,11 @@ export class CustomerDetailComponent implements OnInit {
         true
       )
       .subscribe((result) => {
-        this.appointments.status = 'Customer Appeared';
-        this.appointments.comment = result;
+        if (result) {
+          console.log(result);
+          this.appointments.status = 'Customer Appeared';
+          this.appointments.comment = result.comment ? result.comment : '';
+        }
       });
   }
   noShow() {
@@ -265,8 +272,10 @@ export class CustomerDetailComponent implements OnInit {
         true
       )
       .subscribe((result) => {
-        this.appointments.status = 'Customer not Appeared';
-        this.appointments.comment = result;
+        if (result) {
+          this.appointments.status = 'Customer not Appeared';
+          this.appointments.comment = result.comment ? result.comment : '';
+        }
       });
   }
   partialyCompleted() {
@@ -279,8 +288,10 @@ export class CustomerDetailComponent implements OnInit {
         true
       )
       .subscribe((result) => {
-        this.appointments.status = 'Partially Completed';
-        this.appointments.comment = result;
+        if (result) {
+          this.appointments.status = 'Partially Completed';
+          this.appointments.comment = result.comment ? result.comment : '';
+        }
       });
   }
   reportPending() {
@@ -293,8 +304,10 @@ export class CustomerDetailComponent implements OnInit {
         true
       )
       .subscribe((result) => {
-        this.appointments.status = 'Report Pending';
-        this.appointments.comment = result;
+        if (result) {
+          this.appointments.status = 'Report Pending';
+          this.appointments.comment = result.comment ? result.comment : '';
+        }
       });
   }
   QcProcess() {
@@ -307,8 +320,10 @@ export class CustomerDetailComponent implements OnInit {
         true
       )
       .subscribe((result) => {
-        this.appointments.status = 'Qc in Process';
-        this.appointments.comment = result;
+        if (result) {
+          this.appointments.status = 'Qc in Process';
+          this.appointments.comment = result.comment ? result.comment : '';
+        }
       });
   }
 }

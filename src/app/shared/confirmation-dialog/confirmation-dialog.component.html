@@ -23,6 +23,7 @@
     color="primary"
     [disabled]="data.hasComment && comment == null"
     cdkFocusInitial
+    (click)="accept()"
   >
     {{ data.btnOkText }}
   </button>

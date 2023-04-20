@@ -293,23 +293,13 @@
   <mat-card class="flex-item-5">
     <div class="flex-container flex-end">
       <!-- *ngIf="appointments?.appointments?.length" -->
-      <div class="flex-item" *ngIf="appointments?.appointments?.length">
-        <button
-          mat-raised-button
-          color="primary"
-          [matBadge]="appointments?.appointments?.length"
-          matBadgeColor="warn"
-          (click)="showHistory()"
-        >
-          <span> No of Schedules </span>
-        </button>
-      </div>
-      <div class="flex-item" style="line-height: 39px;" *ngIf="!showAppoinment">
+      <div class="flex-item" style="line-height: 39px;">
         Status :
         <span style="line-height: 39px;color:blue">{{
-          appointments.status
+          appointments ? appointments.status : 'Registered'
         }}</span>
       </div>
+
       <div class="flex-item">
         <button
           mat-raised-button
@@ -321,8 +311,19 @@
         </button>
       </div>
       <div class="flex-item">
-        <button mat-button color="primary" (click)="noResponse()">
+        <button mat-raised-button color="primary" (click)="noResponse()">
           No Response
+        </button>
+      </div>
+      <div class="flex-item">
+        <button
+          mat-raised-button
+          color="primary"
+          [matBadge]="appointments?.appointments?.length"
+          matBadgeColor="warn"
+          (click)="showHistory()"
+        >
+          <span> History </span>
         </button>
       </div>
     </div>

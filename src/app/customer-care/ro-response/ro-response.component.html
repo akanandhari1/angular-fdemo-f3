@@ -15,7 +15,13 @@
   </div>
 </mat-dialog-content>
 <div mat-dialog-actions align="end" class="float-right">
-  <button mat-button mat-raised-button color="primary" (click)="noResponse()">
+  <button
+    mat-button
+    mat-raised-button
+    color="primary"
+    (click)="noResponse()"
+    [disabled]="appointments?.status?.length == 0"
+  >
     Save
   </button>
   <button mat-button color="primary" [mat-dialog-close]>Close</button>

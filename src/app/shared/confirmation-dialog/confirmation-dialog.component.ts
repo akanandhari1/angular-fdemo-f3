@@ -8,7 +8,7 @@ import { ConfirmationDialogService } from '../confirmation-dialog.service';
 })
 export class ConfirmationDialogComponent implements OnInit {
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   public comment: any = '';
