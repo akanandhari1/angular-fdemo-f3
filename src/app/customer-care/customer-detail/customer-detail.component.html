@@ -95,6 +95,15 @@
             maxlength="10"
           />
           <mat-icon matPrefix>call</mat-icon>
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.AgentNo.touched && form.controls.AgentNo.invalid
+              "
+            >
+              Please enter a valid mobile number</span
+            >
+          </mat-error>
         </mat-form-field>
       </div>
 
@@ -338,10 +347,10 @@
                   <div class="col-2">{{ appointment.typeOfVisit }}</div>
                 </div>
                 <div class="row">
-                  <div class="col-1 bold">DC Details</div>
+                  <div class="col-1 bold">DC Name</div>
                   <div class="col-2">
                     <ng-container *ngIf="appointment.dcDetails">
-                      <span class="bold">
+                      <span class="">
                         {{ appointment.dcDetails.name }}
                       </span>
                     </ng-container>
@@ -352,7 +361,7 @@
                   <div class="col-1 bold">Contact Number</div>
                   <div class="col-2">
                     <ng-container *ngIf="appointment.dcDetails">
-                      <span class="bold">
+                      <span class="">
                         {{ appointment.dcDetails.phoneNumber }}
                       </span>
                     </ng-container>
@@ -362,7 +371,7 @@
                   <div class="col-1 bold">DC Email</div>
                   <div class="col-2">
                     <ng-container *ngIf="appointment.dcDetails">
-                      <span class="bold">
+                      <span class="">
                         {{ appointment.dcDetails.email }}
                       </span>
                     </ng-container>
