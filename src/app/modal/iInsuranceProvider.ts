@@ -56,7 +56,7 @@ export class InsuranceProvider {
         { value: data.Gender, disabled: disableField },
         [Validators.required],
       ],
-      DOB: [{ value: data.DOB, disabled: disableField }],
+      DOB: [{ value: data.DOB, disabled: disableField }, [Validators.required]],
       CustomerNo: [
         { value: data.CustomerNo || '', disabled: disableField },
         [Validators.maxLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],

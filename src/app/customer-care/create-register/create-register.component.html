@@ -109,6 +109,13 @@
           </mat-datepicker-toggle>
 
           <mat-datepicker #releasedAtPicker> </mat-datepicker>
+          <mat-error
+            ><span
+              *ngIf="form.controls.DOB.touched && form.controls.DOB.invalid"
+            >
+              Please Enter Date of Birth</span
+            >
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label> Customer Mobile Number</mat-label>
@@ -134,7 +141,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>City</mat-label>
-          <input matInput formControlName="city" required />
+          <input matInput formControlName="city" alphabetOnly required />
           <mat-icon matPrefix> location_city</mat-icon>
           <mat-error
             ><span

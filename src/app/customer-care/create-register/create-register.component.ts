@@ -131,7 +131,7 @@ export class CreateRegisterComponent implements OnInit {
       ],
       CustomerName: [null],
       Gender: [null, [Validators.required]],
-      DOB: [null],
+      DOB: [null, [Validators.required]],
       CutomerNo: [
         null,
         [Validators.minLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],

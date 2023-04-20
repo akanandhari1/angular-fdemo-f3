@@ -35,7 +35,7 @@ export class AlphaNumericDirective {
   selector: '[alphabetOnly]',
 })
 export class AlphabetDirective {
-  private regex: RegExp = new RegExp(/^[a-z, ]+$/i);
+  private regex: RegExp = new RegExp(/^[a-z ]+$/i);
   private specialKeys: Array<string> = [
     'Backspace',
     'Tab',
@@ -68,7 +68,7 @@ export class AlphabetDirective {
   selector: '[alphabetwithSpecial]',
 })
 export class CustomerAlphabetDirective {
-  private regex: RegExp = new RegExp(/^[a-z,', ,/-]+$/i);
+  private regex: RegExp = new RegExp(/^[a-z '/-]+$/i);
   private specialKeys: Array<string> = [
     'Backspace',
     'Tab',
