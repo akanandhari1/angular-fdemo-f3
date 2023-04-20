@@ -223,7 +223,7 @@ export class CustomerDetailComponent implements OnInit {
   rebookAppoinment() {
     // this.deleteAppoinment(this.appointments.appointments.length - 1);
     const dialogRef = this.dialog.open(BookAppointmentComponent, {
-      data: this.appointments,
+      data: JSON.parse(JSON.stringify(this.appointments)),
     });
     dialogRef.afterClosed().subscribe((result: Appointments) => {
       if (result) {

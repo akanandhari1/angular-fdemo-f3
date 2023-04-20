@@ -70,6 +70,7 @@ export class BookAppointmentComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public appointmentedit: Appointments
   ) {
+    this.dialogRef.disableClose = true;
     this.filteredlabTests = this.labTestCtrl.valueChanges.pipe(
       startWith(null),
       map((labTest: string | null) =>

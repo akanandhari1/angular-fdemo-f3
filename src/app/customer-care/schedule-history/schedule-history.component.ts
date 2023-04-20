@@ -32,6 +32,7 @@ export class ScheduleHistoryComponent implements OnInit, AfterViewInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<ScheduleHistoryComponent>
   ) {
+    this.dialogRef.disableClose = true;
     this.oService.getScheduleHistory().subscribe((re) => {
       this.ScheduleHistory = re;
       this.dataSource = new MatTableDataSource(this.ScheduleHistory);

@@ -24,7 +24,9 @@ export class ConfirmationDialogComponent implements OnInit {
       isCancel: true,
       hasComment: false,
     }
-  ) {}
+  ) {
+    this.dialogRef.disableClose = true;
+  }
 
   ngOnInit() {
     if (this.data.hasComment) {
