@@ -30,5 +30,6 @@ export class IProviderComponent {
     } else {
       this.customerhomescreen = true;
     }
+    this.selectedTab = 0;
   }
 }
