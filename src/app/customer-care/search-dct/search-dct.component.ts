@@ -54,7 +54,7 @@ export class SearchDctComponent implements OnInit {
     }
   }
   openSnackBar() {
-    this._snackBar.open('kindly Select a DC', '', {
+    this._snackBar.open('Kindly Select a DC', '', {
       duration: 5 * 1000,
     });
   }
