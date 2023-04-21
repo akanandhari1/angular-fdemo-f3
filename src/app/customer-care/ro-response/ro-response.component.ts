@@ -28,6 +28,7 @@ export class RoResponseComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA)
     public appointmentedit: Appointments
   ) {
+    this.dialogRef.disableClose = true;
     if (this.appointmentedit) {
       this.appointments = this.appointmentedit;
     } else {
