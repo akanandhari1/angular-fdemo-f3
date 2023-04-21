@@ -167,7 +167,7 @@ export class BookAppointmentComponent implements OnInit {
     this.appointments.appointments.splice(i, 1);
   }
   deleteDc(appointment: Appointment) {
-    appointment.dcDetails = new DcDetails();
+    appointment.dcDetails = undefined;
   }
   validateAppointment(): any {
     if (this.appointments.appointments.length > 0) {

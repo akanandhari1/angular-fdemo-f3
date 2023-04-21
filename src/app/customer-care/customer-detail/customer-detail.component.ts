@@ -96,6 +96,11 @@ export class CustomerDetailComponent implements OnInit {
       })
     );
   }
+  save() {
+    if (!this.form.invalid) {
+      this.changeEdit();
+    }
+  }
   changeEdit() {
     this.disableEdit = !this.disableEdit;
     //  console.log(this.form);

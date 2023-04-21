@@ -22,6 +22,7 @@ export class SearchDctComponent implements OnInit {
     public dialogRef: MatDialogRef<SearchDctComponent>,
     private _snackBar: MatSnackBar
   ) {
+    this.dialogRef.disableClose = true;
     this.oService.getDcDetails(this.searchPin).subscribe((result) => {
       this.dcDetails = result;
     });
