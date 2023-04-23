@@ -8,19 +8,19 @@
     <div class="flex-container" [formGroup]="form">
       <mat-form-field class="flex-item">
         <mat-label>Policy ID</mat-label>
-        <input matInput formControlName="PolicyId" />
+        <input matInput formControlName="PolicyId" alphaNumeric />
         <mat-icon matPrefix>policy_outlined</mat-icon>
       </mat-form-field>
 
       <mat-form-field class="flex-item">
         <mat-label>Member ID</mat-label>
-        <input matInput formControlName="MemberId" />
+        <input matInput formControlName="MemberId" alphaNumeric />
         <mat-icon matPrefix>card_membership_outlined </mat-icon>
       </mat-form-field>
 
       <mat-form-field class="flex-item">
         <mat-label>Customer Name</mat-label>
-        <input matInput formControlName="CustomerName" />
+        <input matInput formControlName="CustomerName" alphabetwithSpecial />
         <mat-icon matPrefix>person_search_outlined</mat-icon>
       </mat-form-field>
 
