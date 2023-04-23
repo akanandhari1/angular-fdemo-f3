@@ -7,6 +7,7 @@ import { InsuranceProviderComponent } from '../insurance-provider/insurance-prov
 import { QualityCheckHomeComponent } from '../QC/quality-check-home/quality-check-home.component';
 import { LoginComponent } from '../login/login.component';
 import { AuthGuard } from '../auth.guard';
+import { DcHomeComponent } from '../DC/dc-home/dc-home.component';
 const routes: Routes = [
   {
     path: '',
@@ -33,6 +34,12 @@ const routes: Routes = [
   {
     path: 'insuranceProvider',
     component: InsuranceProviderComponent,
+    // canActivate: [AuthGuard],
+    data: { animation: 'HomePage' },
+  },
+  {
+    path: 'dc',
+    component: DcHomeComponent,
     // canActivate: [AuthGuard],
     data: { animation: 'HomePage' },
   },

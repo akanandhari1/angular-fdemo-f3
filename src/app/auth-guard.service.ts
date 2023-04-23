@@ -19,6 +19,10 @@ const User_data: User[] = [
     UserName: 'provider',
     role: 'provider',
   },
+  {
+    UserName: 'dc',
+    role: 'dc',
+  },
 ];
 @Injectable({
   providedIn: 'root',

@@ -44,6 +44,9 @@ import {
   AlphaNumericDirective,
   AlphabetDirective,CustomerAlphabetDirective
 } from './shared/alpha-numeric.directive';
+import { DcHomeComponent } from './DC/dc-home/dc-home.component';
+import { DcRegisterComponent } from './DC/dc-register/dc-register.component';
+import { DcFetchDataComponent } from './DC/dc-fetch-data/dc-fetch-data.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import {
     NumberOnlyDirective,
     AlphaNumericDirective,
     AlphabetDirective,
-    CustomerAlphabetDirective
+    CustomerAlphabetDirective,
+    DcHomeComponent,
+    DcRegisterComponent,
+    DcFetchDataComponent
   ],
   imports: [
     AppRouterModule,
