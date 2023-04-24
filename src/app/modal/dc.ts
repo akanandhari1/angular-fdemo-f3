@@ -1,57 +1,57 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class DC {
-  Dc_UID?: string;
-  DcName: string;
-  Grade: string;
+  Dc_UID?: string = '';
+  DcName: string = '';
+  Grade: string = '';
   Block: boolean;
-  Address: string;
-  Location: string;
-  City: string;
-  state: string;
-  Pincode: string;
-  ContactPerson1Name: string;
-  ContactPerson1No: string;
-  ContactPerson2Name: string;
-  ContactPerson2No: string;
-  Landline: string;
-  Email: string;
-  Spoc_Name: string;
-  MER: string;
-  X_RAY: string;
-  ECG: string;
-  TwoD_ECHO: String;
-  Urine_Cotinine: string;
-  CTMT: string;
-  USG: string;
-  Female_Tech: string;
-  ReportsTat: string;
-  HomeVisit: string;
-  DCVisit: string;
-  TATA_AIG: string;
-  HDFC: string;
-  SBI: string;
-  BankName: string;
-  AccHolderName: string;
-  AccountNo: string;
-  BranchAddress: string;
-  IfscCode: string;
-  PanName: string;
-  PanNo: string;
+  Address: string = '';
+  Location: string = '';
+  City: string = '';
+  State: string = '';
+  Pincode: string = '';
+  ContactPerson1Name: string = '';
+  ContactPerson1No: string = '';
+  ContactPerson2Name: string = '';
+  ContactPerson2No: string = '';
+  Landline: string = '';
+  Email: string = '';
+  Spoc_Name: string = '';
+  MER: string = '';
+  X_RAY: string = '';
+  ECG: string = '';
+  TwoD_ECHO: string = '';
+  Urine_Cotinine: string = '';
+  CTMT: string = '';
+  USG: string = '';
+  Female_Tech: string = '';
+  ReportsTat: string = '';
+  HomeVisit: string = '';
+  DCVisit: string = '';
+  TATA_AIG: string = '';
+  HDFC: string = '';
+  SBI: string = '';
+  BankName: string = '';
+  AccHolderName: string = '';
+  AccountNo: string = '';
+  BranchAddress: string = '';
+  IfscCode: string = '';
+  PanName: string = '';
+  PanNo: string = '';
   Mou: File;
-  CreditPeriod: string;
+  CreditPeriod: string = '';
   BankDetails: File;
   Tariff: File;
-  TariffPrice: string;
+  TariffPrice: string = '';
   Pis: File;
   RegistrationCertificate: File;
   Photos: File[];
   DCGrading: File;
   DCAudit: File;
   otherDocs: File;
-  Remarks: string;
+  Remarks: string = '';
 
-  static createForm(data: DC, disableField = true): FormGroup {
+  static createForm(data: DC = new DC(), disableField = false): FormGroup {
     let fb: FormBuilder = new FormBuilder();
     return fb.group({
       DcName: [
@@ -72,8 +72,8 @@ export class DC {
         { value: data.City, disabled: disableField },
         [Validators.required],
       ],
-      state: [
-        { value: data.state, disabled: disableField },
+      State: [
+        { value: data.State, disabled: disableField },
         [Validators.required],
       ],
       Pincode: [
