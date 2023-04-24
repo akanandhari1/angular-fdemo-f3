@@ -26,11 +26,11 @@ export class DC {
   USG: string = '';
   Female_Tech: string = '';
   ReportsTat: string = '';
-  HomeVisit: string = '';
-  DCVisit: string = '';
-  TATA_AIG: string = '';
-  HDFC: string = '';
-  SBI: string = '';
+  HomeVisit: boolean = false;
+  DCVisit: boolean = false;
+  TATA_AIG: boolean = false;
+  HDFC: boolean = false;
+  SBI: boolean = false;
   BankName: string = '';
   AccHolderName: string = '';
   AccountNo: string = '';

@@ -1,299 +1,415 @@
-<mat-card>
-  <section>
-    <form [formGroup]="form" (ngSubmit)="onFormSubmit()" autocomplete="off">
-      <mat-card>
-        <h4 class="title">CREATE</h4>
-        <div class="flex-container">
-          <mat-form-field class="flex-item">
-            <mat-label>Diagnostic Centre Name</mat-label>
-            <mat-icon matPrefix>perm_identity</mat-icon>
-            <input matInput formControlName="DcName" alphaNumeric />
-            <mat-error
-              ><span
-                *ngIf="
-                  form.controls.DcName.touched && form.controls.DcName.invalid
-                "
-              >
-                Please Enter Diagnostic Centre Name</span
-              >
-            </mat-error>
-          </mat-form-field>
-
-          <div class="flex-item">
-            <label id="example-radio-group-label" class="radio-label"
-              >Grade
-            </label>
-            <br />
-
-            <mat-radio-group formControlName="Grade" required>
-              <mat-radio-button value="Non-Premium"
-                >Non-Premium
-              </mat-radio-button>
-              <mat-radio-button value="Premium">Premium</mat-radio-button>
-            </mat-radio-group>
-            <mat-error>
-              <span
-                *ngIf="
-                  form.controls.Grade.touched && form.controls.Grade.invalid
-                "
-              >
-                Please Choose a Grade</span
-              >
-            </mat-error>
-          </div>
-          <!-- <mat-form-field class="flex-item">
-          <mat-label>Block</mat-label>
-          <mat-checkbox formControlName="Block" [color]="'primary'">
-          </mat-checkbox>
-        </mat-form-field> -->
-          <mat-form-field class="flex-item">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="Address" />
-            <mat-icon matPrefix> location</mat-icon>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>Location</mat-label>
-            <input matInput formControlName="Location" />
-            <mat-icon matPrefix>location </mat-icon>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>City</mat-label>
-            <input matInput formControlName="City" alphabetOnly required />
-            <mat-icon matPrefix> location_city</mat-icon>
-            <mat-error
-              ><span
-                *ngIf="form.controls.City.touched && form.controls.City.invalid"
-              >
-                Please enter City</span
-              >
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>State</mat-label>
-            <mat-icon matPrefix>location_searching</mat-icon>
-            <mat-select formControlName="State" required>
-              <mat-option *ngFor="let state of stateList" [value]="state">
-                {{ state }}
-              </mat-option>
-            </mat-select>
-            <mat-error
-              ><span
-                *ngIf="
-                  form.controls.State.touched && form.controls.State.invalid
-                "
-              >
-                Please select a state</span
-              >
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>Pincode</mat-label>
-            <input
-              matInput
-              NumberOnly
-              formControlName="Pincode"
-              onKeyPress="if(this.value.length==6) return false;"
-              required
-            />
-            <mat-icon matPrefix> location_on</mat-icon>
-            <mat-error
-              ><span
-                *ngIf="
-                  form.controls.Pincode.touched && form.controls.Pincode.invalid
-                "
-              >
-                Please enter pincode</span
-              >
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>Contact Person 1 Name</mat-label>
-            <input
-              matInput
-              formControlName="ContactPerson1Name"
-              alphabetwithSpecial
-            />
-            <mat-icon matPrefix> person_pin</mat-icon>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>Contact Person 1 Number</mat-label>
-            <input
-              matInput
-              formControlName="ContactPerson1No"
-              NumberOnly
-              onKeyPress="if(this.value.length==10) return false;"
-            />
-            <mat-icon matPrefix>call</mat-icon>
-            <mat-error
-              ><span
-                *ngIf="
-                  form.controls.ContactPerson1No.touched &&
-                  form.controls.ContactPerson1No.invalid
-                "
-              >
-                Please enter a valid mobile number</span
-              >
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="flex-item">
-            <mat-label>Contact Person 2 Name</mat-label>
-            <input
-              matInput
-              formControlName="ContactPerson2Name"
-              alphabetwithSpecial
-            />
-            <mat-icon matPrefix> person_pin</mat-icon>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>Contact Person 2 Number</mat-label>
-            <input
-              matInput
-              formControlName="ContactPerson2No"
-              NumberOnly
-              onKeyPress="if(this.value.length==10) return false;"
-            />
-            <mat-icon matPrefix>call</mat-icon>
-            <mat-error
-              ><span
-                *ngIf="
-                  form.controls.ContactPerson2No.touched &&
-                  form.controls.ContactPerson2No.invalid
-                "
-              >
-                Please enter a valid mobile number</span
-              >
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field class="flex-item">
-            <mat-label> Landline Number</mat-label>
-            <input matInput formControlName="Landline" NumberOnly />
-            <mat-icon matPrefix>call</mat-icon>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="Email" />
-            <mat-icon matPrefix> person_pin</mat-icon>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>SPOC Name</mat-label>
-            <input matInput formControlName="Spoc_Name" />
-            <mat-icon matPrefix> person_pin</mat-icon>
-          </mat-form-field>
-        </div>
-      </mat-card>
-      <div class="space"></div>
-      <mat-card>
-        <h4 class="title">Available Features</h4>
-        <div class="flex-container">
-          <mat-form-field class="flex-item">
-            <mat-label>MER</mat-label>
-            <mat-icon matPrefix></mat-icon>
-            <mat-select formControlName="MER">
-              <mat-option value="Yes"> Yes </mat-option>
-              <mat-option value="No"> No </mat-option>
-              <mat-option value="OS"> OS </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>X_RAY</mat-label>
-            <mat-icon matPrefix></mat-icon>
-            <mat-select formControlName="X_RAY">
-              <mat-option value="Yes"> Yes </mat-option>
-              <mat-option value="No"> No </mat-option>
-              <mat-option value="OS"> OS </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>ECG</mat-label>
-            <mat-icon matPrefix></mat-icon>
-            <mat-select formControlName="ECG">
-              <mat-option value="Yes"> Yes </mat-option>
-              <mat-option value="No"> No </mat-option>
-              <mat-option value="OS"> OS </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>TwoD_ECHO</mat-label>
-            <mat-icon matPrefix></mat-icon>
-            <mat-select formControlName="TwoD_ECHO">
-              <mat-option value="Yes"> Yes </mat-option>
-              <mat-option value="No"> No </mat-option>
-              <mat-option value="OS"> OS </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>Urine_Cotinine</mat-label>
-            <mat-icon matPrefix></mat-icon>
-            <mat-select formControlName="Urine_Cotinine">
-              <mat-option value="Yes"> Yes </mat-option>
-              <mat-option value="No"> No </mat-option>
-              <mat-option value="OS"> OS </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>CTMT</mat-label>
-            <mat-icon matPrefix></mat-icon>
-            <mat-select formControlName="CTMT">
-              <mat-option value="Yes"> Yes </mat-option>
-              <mat-option value="No"> No </mat-option>
-              <mat-option value="OS"> OS </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>USG</mat-label>
-            <mat-icon matPrefix></mat-icon>
-            <mat-select formControlName="USG">
-              <mat-option value="Yes"> Yes </mat-option>
-              <mat-option value="No"> No </mat-option>
-              <mat-option value="OS"> OS </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>Female_Tech</mat-label>
-            <mat-icon matPrefix></mat-icon>
-            <mat-select formControlName="Female_Tech">
-              <mat-option value="Yes"> Yes </mat-option>
-              <mat-option value="No"> No </mat-option>
-              <mat-option value="OS"> OS </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field class="flex-item">
-            <mat-label>Reports TAT</mat-label>
-            <mat-icon matPrefix></mat-icon>
-            <mat-select formControlName="ReportsTat">
-              <mat-option
-                *ngFor="
-                  let number of [
-                    '0',
-                    '1',
-                    '2',
-                    '3',
-                    '4',
-                    '5',
-                    '6',
-                    '7',
-                    '8',
-                    '9'
-                  ]
-                "
-                value="number"
-              >
-                {{ number }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </mat-card>
+<section>
+  <form [formGroup]="form" (ngSubmit)="onFormSubmit()" autocomplete="off">
+    <mat-card>
+      <h4 class="title">CREATE</h4>
       <div class="flex-container">
-        <div class="bottom-pane">
-          <button mat-raised-button type="submit" color="primary">
-            Submit
-          </button>
-          <button mat-raised-button extended (click)="reset()">Reset</button>
+        <mat-form-field class="flex-item">
+          <mat-label>Diagnostic Centre Name</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input matInput formControlName="DcName" alphaNumeric />
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.DcName.touched && form.controls.DcName.invalid
+              "
+            >
+              Please Enter Diagnostic Centre Name</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <div class="flex-item">
+          <label id="example-radio-group-label" class="radio-label"
+            >Grade<sup>*</sup>
+          </label>
+          <br />
+
+          <mat-radio-group formControlName="Grade" required>
+            <mat-radio-button value="Non-Premium"
+              >Non-Premium
+            </mat-radio-button>
+            <mat-radio-button value="Premium">Premium</mat-radio-button>
+          </mat-radio-group>
+          <mat-error>
+            <span
+              *ngIf="form.controls.Grade.touched && form.controls.Grade.invalid"
+            >
+              Please Choose a Grade</span
+            >
+          </mat-error>
+        </div>
+        <div class="flex-item matcheck">
+          <mat-checkbox formControlName="Block" [color]="'primary'">
+            Block
+          </mat-checkbox>
+        </div>
+        <mat-form-field class="flex-item">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="Address" />
+          <mat-icon matPrefix> location</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Location</mat-label>
+          <input matInput formControlName="Location" />
+          <mat-icon matPrefix>location </mat-icon>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="City" alphabetOnly required />
+          <mat-icon matPrefix> location_city</mat-icon>
+          <mat-error
+            ><span
+              *ngIf="form.controls.City.touched && form.controls.City.invalid"
+            >
+              Please enter City</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>State</mat-label>
+          <mat-icon matPrefix>location_searching</mat-icon>
+          <mat-select formControlName="State" required>
+            <mat-option *ngFor="let state of stateList" [value]="state">
+              {{ state }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            ><span
+              *ngIf="form.controls.State.touched && form.controls.State.invalid"
+            >
+              Please select a state</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Pincode</mat-label>
+          <input
+            matInput
+            NumberOnly
+            formControlName="Pincode"
+            onKeyPress="if(this.value.length==6) return false;"
+            required
+          />
+          <mat-icon matPrefix> location_on</mat-icon>
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.Pincode.touched && form.controls.Pincode.invalid
+              "
+            >
+              Please enter pincode</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Contact Person 1 Name</mat-label>
+          <input
+            matInput
+            formControlName="ContactPerson1Name"
+            alphabetwithSpecial
+          />
+          <mat-icon matPrefix> person_pin</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Contact Person 1 Number</mat-label>
+          <input
+            matInput
+            formControlName="ContactPerson1No"
+            NumberOnly
+            onKeyPress="if(this.value.length==10) return false;"
+          />
+          <mat-icon matPrefix>call</mat-icon>
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.ContactPerson1No.touched &&
+                form.controls.ContactPerson1No.invalid
+              "
+            >
+              Please enter a valid mobile number</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="flex-item">
+          <mat-label>Contact Person 2 Name</mat-label>
+          <input
+            matInput
+            formControlName="ContactPerson2Name"
+            alphabetwithSpecial
+          />
+          <mat-icon matPrefix> person_pin</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Contact Person 2 Number</mat-label>
+          <input
+            matInput
+            formControlName="ContactPerson2No"
+            NumberOnly
+            onKeyPress="if(this.value.length==10) return false;"
+          />
+          <mat-icon matPrefix>call</mat-icon>
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.ContactPerson2No.touched &&
+                form.controls.ContactPerson2No.invalid
+              "
+            >
+              Please enter a valid mobile number</span
+            >
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="flex-item">
+          <mat-label> Landline Number</mat-label>
+          <input matInput formControlName="Landline" NumberOnly />
+          <mat-icon matPrefix>call</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="Email" />
+          <mat-icon matPrefix> person_pin</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>SPOC Name</mat-label>
+          <input matInput formControlName="Spoc_Name" />
+          <mat-icon matPrefix> person_pin</mat-icon>
+        </mat-form-field>
+      </div>
+    </mat-card>
+    <div class="space"></div>
+    <mat-card>
+      <h4 class="title">Available Features</h4>
+      <div class="flex-container">
+        <mat-form-field class="flex-item">
+          <mat-label>MER</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="MER">
+            <mat-option value="Yes"> Yes </mat-option>
+            <mat-option value="No"> No </mat-option>
+            <mat-option value="OS"> OS </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>X_RAY</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="X_RAY">
+            <mat-option value="Yes"> Yes </mat-option>
+            <mat-option value="No"> No </mat-option>
+            <mat-option value="OS"> OS </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>ECG</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="ECG">
+            <mat-option value="Yes"> Yes </mat-option>
+            <mat-option value="No"> No </mat-option>
+            <mat-option value="OS"> OS </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>TwoD_ECHO</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="TwoD_ECHO">
+            <mat-option value="Yes"> Yes </mat-option>
+            <mat-option value="No"> No </mat-option>
+            <mat-option value="OS"> OS </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Urine_Cotinine</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="Urine_Cotinine">
+            <mat-option value="Yes"> Yes </mat-option>
+            <mat-option value="No"> No </mat-option>
+            <mat-option value="OS"> OS </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>CTMT</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="CTMT">
+            <mat-option value="Yes"> Yes </mat-option>
+            <mat-option value="No"> No </mat-option>
+            <mat-option value="OS"> OS </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>USG</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="USG">
+            <mat-option value="Yes"> Yes </mat-option>
+            <mat-option value="No"> No </mat-option>
+            <mat-option value="OS"> OS </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Female_Tech</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="Female_Tech">
+            <mat-option value="Yes"> Yes </mat-option>
+            <mat-option value="No"> No </mat-option>
+            <mat-option value="OS"> OS </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Reports TAT</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="ReportsTat">
+            <mat-option
+              *ngFor="
+                let number of ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+              "
+              value="number"
+            >
+              {{ number }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="flex-item matcheck">
+          <mat-checkbox formControlName="HomeVisit" [color]="'primary'">
+            Home Visit
+          </mat-checkbox>
+        </div>
+        <div class="flex-item matcheck">
+          <mat-checkbox formControlName="DCVisit" [color]="'primary'">
+            DC Visit
+          </mat-checkbox>
         </div>
       </div>
-    </form>
-  </section>
-</mat-card>
+    </mat-card>
+    <div class="space"></div>
+    <mat-card>
+      <h4 class="title">Insurance Provider</h4>
+      <div class="flex-container">
+        <div class="flex-item matcheck">
+          <mat-checkbox formControlName="TATA_AIG" [color]="'primary'">
+            TATA_AIA
+          </mat-checkbox>
+        </div>
+        <div class="flex-item matcheck">
+          <mat-checkbox formControlName="HDFC" [color]="'primary'">
+            HDFC
+          </mat-checkbox>
+        </div>
+        <div class="flex-item matcheck">
+          <mat-checkbox formControlName="SBI" [color]="'primary'">
+            SBI
+          </mat-checkbox>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card>
+      <h4 class="title">Bank Details</h4>
+      <div class="flex-container">
+        <mat-form-field class="flex-item">
+          <mat-label>Bank Name</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input matInput formControlName="BankName" alphaNumeric />
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.BankName.touched && form.controls.BankName.invalid
+              "
+            >
+              Please Enter Bank Name</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Account Holder Name</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input matInput formControlName="AccHolderName" alphaNumeric />
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.AccHolderName.touched &&
+                form.controls.AccHolderName.invalid
+              "
+            >
+              Please Enter Account Holder Name</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Account Number</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input matInput formControlName="AccountNo" numberOnly />
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.AccountNo.touched &&
+                form.controls.AccountNo.invalid
+              "
+            >
+              Please Enter Account Number</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Branch Address</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input matInput formControlName="BranchAddress" />
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.BranchAddress.touched &&
+                form.controls.BranchAddress.invalid
+              "
+            >
+              Please Enter Branch Address</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>IFSC Code</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input matInput formControlName="IfscCode" />
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.IfscCode.touched && form.controls.IfscCode.invalid
+              "
+            >
+              Please Enter IFSC Code</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Name(As per PAN)</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input matInput formControlName="PanName" alphabetwithSpecial />
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.PanName.touched && form.controls.PanName.invalid
+              "
+            >
+              Please Enter Name as per PAN</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>PAN Number</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input matInput formControlName="PanNo" alphabetwithSpecial />
+          <mat-error
+            ><span
+              *ngIf="form.controls.PanNo.touched && form.controls.PanNo.invalid"
+            >
+              Please Enter PAN Number</span
+            >
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card>
+    <div class="flex-container">
+      <div class="bottom-pane">
+        <button mat-raised-button type="submit" color="primary">Submit</button>
+        <button mat-raised-button extended (click)="reset()">Reset</button>
+      </div>
+    </div>
+  </form>
+</section>
