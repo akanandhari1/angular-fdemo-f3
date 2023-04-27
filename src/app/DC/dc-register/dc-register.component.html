@@ -394,7 +394,7 @@
         <mat-form-field class="flex-item">
           <mat-label>PAN Number</mat-label>
           <mat-icon matPrefix>perm_identity</mat-icon>
-          <input matInput formControlName="PanNo" alphabetwithSpecial />
+          <input matInput formControlName="PanNo" alphaNumeric />
           <mat-error
             ><span
               *ngIf="form.controls.PanNo.touched && form.controls.PanNo.invalid"
@@ -403,6 +403,16 @@
             >
           </mat-error>
         </mat-form-field>
+      </div>
+    </mat-card>
+    <div class="space"></div>
+    <mat-card>
+      <div class="flex-container">
+        <div class="flex-item">
+          <mat-label>MOU</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input type="file" />
+        </div>
       </div>
     </mat-card>
     <div class="flex-container">

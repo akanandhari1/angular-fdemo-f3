@@ -110,7 +110,7 @@ export class DcService {
       Dc_UID: 'DC_114',
       DcName: 'DK Diagnostics',
       Grade: 'Grade D',
-      Block: true,
+      Block: false,
       Address: 'DC street, DC colony Ahmedabad',
       Location: 'Techno Park',
       City: 'Chennai',

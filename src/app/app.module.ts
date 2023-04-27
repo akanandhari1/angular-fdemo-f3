@@ -42,7 +42,8 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 import { NumberOnlyDirective } from './shared/number-only.directive';
 import {
   AlphaNumericDirective,
-  AlphabetDirective,CustomerAlphabetDirective
+  AlphabetDirective,
+  CustomerAlphabetDirective,
 } from './shared/alpha-numeric.directive';
 import { DcHomeComponent } from './DC/dc-home/dc-home.component';
 import { DcRegisterComponent } from './DC/dc-register/dc-register.component';
@@ -78,7 +79,7 @@ import { DcFetchDataComponent } from './DC/dc-fetch-data/dc-fetch-data.component
     CustomerAlphabetDirective,
     DcHomeComponent,
     DcRegisterComponent,
-    DcFetchDataComponent
+    DcFetchDataComponent,
   ],
   imports: [
     AppRouterModule,
