@@ -98,7 +98,7 @@ export class DC {
       Landline: [{ value: data.Landline, disabled: disableField }],
       Email: [
         { value: data.Email, disabled: disableField },
-        [Validators.required],
+        [Validators.required, Validators.email],
       ],
       Spoc_Name: [
         { value: data.Spoc_Name, disabled: disableField },

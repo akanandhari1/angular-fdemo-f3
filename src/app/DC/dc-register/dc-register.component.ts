@@ -26,9 +26,9 @@ export class DcRegisterComponent implements OnInit {
   ngOnInit(): void {}
   reset() {
     this.form.reset();
-    this.form.setValue({}, { emitEvent: false });
     this.form.markAsUntouched();
     this.form.markAsPristine();
+    this.form.setValue(new DC(), { emitEvent: false });
   }
   onFormSubmit() {
     console.log(this.form);
