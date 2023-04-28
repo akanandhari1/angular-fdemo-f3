@@ -46,12 +46,21 @@
         <mat-form-field class="flex-item">
           <mat-label>Address</mat-label>
           <input matInput formControlName="Address" />
-          <mat-icon matPrefix> location</mat-icon>
+          <mat-icon matPrefix> store_mall_directory</mat-icon>
+          <mat-error>
+            <span
+              *ngIf="
+                form.controls.Address.touched && form.controls.Address.invalid
+              "
+            >
+              Please Enter Address</span
+            >
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Location</mat-label>
           <input matInput formControlName="Location" />
-          <mat-icon matPrefix>location </mat-icon>
+          <mat-icon matPrefix>map </mat-icon>
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>City</mat-label>
@@ -109,6 +118,16 @@
             alphabetwithSpecial
           />
           <mat-icon matPrefix> person_pin</mat-icon>
+          <mat-error>
+            <span
+              *ngIf="
+                form.controls.ContactPerson1Name.touched &&
+                form.controls.ContactPerson1Name.invalid
+              "
+            >
+              Please Enter Contact Person Name</span
+            >
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Contact Person 1 Number</mat-label>
@@ -169,12 +188,29 @@
         <mat-form-field class="flex-item">
           <mat-label>Email</mat-label>
           <input matInput formControlName="Email" />
-          <mat-icon matPrefix> person_pin</mat-icon>
+          <mat-icon matPrefix> mail</mat-icon>
+          <mat-error>
+            <span
+              *ngIf="form.controls.Email.touched && form.controls.Email.invalid"
+            >
+              Please Enter Email</span
+            >
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>SPOC Name</mat-label>
           <input matInput formControlName="Spoc_Name" />
           <mat-icon matPrefix> person_pin</mat-icon>
+          <mat-error>
+            <span
+              *ngIf="
+                form.controls.Spoc_Name.touched &&
+                form.controls.Spoc_Name.invalid
+              "
+            >
+              Please Enter SPOC Name</span
+            >
+          </mat-error>
         </mat-form-field>
       </div>
     </mat-card>
@@ -184,7 +220,7 @@
       <div class="flex-container">
         <mat-form-field class="flex-item">
           <mat-label>MER</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>biotech</mat-icon>
           <mat-select formControlName="MER">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
@@ -193,7 +229,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>X-RAY</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>biotech</mat-icon>
           <mat-select formControlName="X_RAY">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
@@ -202,7 +238,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Lab</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>biotech</mat-icon>
           <mat-select formControlName="Lab">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
@@ -211,7 +247,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>ECG</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix> biotech </mat-icon>
           <mat-select formControlName="ECG">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
@@ -220,7 +256,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>TwoD_ECHO</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>biotech</mat-icon>
           <mat-select formControlName="TwoD_ECHO">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
@@ -229,7 +265,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Urine_Cotinine</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>biotech</mat-icon>
           <mat-select formControlName="Urine_Cotinine">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
@@ -238,7 +274,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>CTMT</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>biotech</mat-icon>
           <mat-select formControlName="CTMT">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
@@ -247,7 +283,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>USG</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>biotech</mat-icon>
           <mat-select formControlName="USG">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
@@ -256,7 +292,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Female Technician</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>woman</mat-icon>
           <mat-select formControlName="Female_Tech">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
@@ -265,7 +301,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Reports TAT</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>insights</mat-icon>
           <mat-select formControlName="ReportsTat">
             <mat-option
               *ngFor="
@@ -310,6 +346,7 @@
         </div>
       </div>
     </mat-card>
+    <div class="space"></div>
     <mat-card>
       <h4 class="title">Bank Details</h4>
       <div class="flex-container">
@@ -416,6 +453,7 @@
     </mat-card>
     <div class="space"></div>
     <mat-card>
+      <h4 class="title">Upload Documents</h4>
       <div class="flex-container">
         <mat-form-field class="flex-item">
           <mat-label>Credit Period</mat-label>
@@ -446,37 +484,95 @@
       </div>
       <div class="flex-container">
         <div class="flex-item">
-          <browse-file [title]="'MOU'"></browse-file>
+          <browse-file
+            [title]="'MOU'"
+            [file]="form.controls['Mou'].value"
+            (out)="captureEmit($event, 'Mou')"
+          ></browse-file>
         </div>
         <div class="flex-item">
-          <browse-file [title]="'Bank Details'"></browse-file>
+          <browse-file
+            [title]="'Bank Details'"
+            [file]="form.controls['BankDetails'].value"
+            (out)="captureEmit($event, 'BankDetails')"
+          ></browse-file>
         </div>
         <div class="flex-item">
-          <browse-file [title]="'Tariff'"></browse-file>
+          <browse-file
+            [title]="'Tariff'"
+            [file]="form.controls['Tariff'].value"
+            (out)="captureEmit($event, 'Tariff')"
+          ></browse-file>
         </div>
         <div class="flex-item">
-          <browse-file [title]="'PIS'"></browse-file>
+          <browse-file
+            [title]="'PIS'"
+            [file]="form.controls['Pis'].value"
+            (out)="captureEmit($event, 'Pis')"
+          ></browse-file>
         </div>
         <div class="flex-item">
-          <browse-file [title]="'Registration Certificates'"></browse-file>
+          <browse-file
+            [title]="'Registration Certificates'"
+            [file]="form.controls['RegistrationCertificate'].value"
+            (out)="captureEmit($event, 'RegistrationCertificate')"
+          ></browse-file>
         </div>
         <div class="flex-item">
-          <browse-file [title]="'Photos'"></browse-file>
+          <browse-file
+            [title]="'Photos'"
+            [file]="form.controls['Photos'].value"
+            (out)="captureEmit($event, 'Photos')"
+          ></browse-file>
         </div>
         <div class="flex-item">
-          <browse-file [title]="'DC Grading'"></browse-file>
+          <browse-file
+            [title]="'DC Grading'"
+            [file]="form.controls['DCGrading'].value"
+            (out)="captureEmit($event, 'DCGrading')"
+          ></browse-file>
         </div>
         <div class="flex-item">
-          <browse-file [title]="'DC Audit'"></browse-file>
+          <browse-file
+            [title]="'DC Audit'"
+            [file]="form.controls['DCAudit'].value"
+            (out)="captureEmit($event, 'DCAudit')"
+          ></browse-file>
         </div>
         <div class="flex-item">
-          <browse-file [title]="'Other Documents'"></browse-file>
+          <browse-file
+            [title]="'Other Documents'"
+            [file]="form.controls['otherDocs'].value"
+            (out)="captureEmit($event, 'otherDocs')"
+          ></browse-file>
         </div>
       </div>
     </mat-card>
+    <div class="space"></div>
+    <mat-card>
+      <div class="flex-container">
+        <mat-form-field class="flex-item-big" style="width:90%">
+          <mat-label>Remarks</mat-label>
+
+          <textarea
+            matInput
+            formControlName="Remarks"
+            alphabetwithSpecial
+          ></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card>
+    <div class="space"></div>
     <div class="flex-container">
       <div class="bottom-pane">
-        <button mat-raised-button type="submit" color="primary">Submit</button>
+        <button
+          mat-raised-button
+          type="submit"
+          color="primary"
+          (click)="onFormSubmit()"
+        >
+          Submit
+        </button>
         <button mat-raised-button extended (click)="reset()">Reset</button>
       </div>
     </div>

@@ -20,6 +20,15 @@ export class BrowseFileComponent implements OnInit {
   enablesubmit = false;
   @Input()
   public title: any = '';
+
+  @Input()
+  set file(val: any) {
+    if (val) {
+      if (this.files.length == 0) {
+        this.files.push(val);
+      }
+    } else this.files = [];
+  }
   @Output()
   public out = new EventEmitter();
   constructor(private _snackBar: MatSnackBar, public dialog: MatDialog) {}
