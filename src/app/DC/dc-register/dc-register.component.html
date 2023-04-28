@@ -408,6 +408,34 @@
     <div class="space"></div>
     <mat-card>
       <div class="flex-container">
+        <mat-form-field class="flex-item">
+          <mat-label>Credit Period</mat-label>
+          <mat-icon matPrefix>perm_identity</mat-icon>
+          <input matInput formControlName="CreditPeriod" />
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Reports TAT</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="TariffPrice">
+            <mat-option
+              *ngFor="
+                let number of [
+                  'Base Price',
+                  '5%',
+                  '10%',
+                  '15%',
+                  '20%',
+                  'Exceptional'
+                ]
+              "
+              value="number"
+            >
+              {{ number }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="flex-container">
         <div class="flex-item">
           <browse-file [title]="'MOU'"></browse-file>
         </div>
