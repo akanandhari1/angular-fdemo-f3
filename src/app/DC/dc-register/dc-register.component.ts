@@ -32,7 +32,7 @@ export class DcRegisterComponent implements OnInit {
   }
   onFormSubmit() {
     console.log(this.form);
-    this.form.markAsTouched();
+    this.form.markAllAsTouched();
     this.form.updateValueAndValidity();
   }
   captureEmit(event: any, name: any) {

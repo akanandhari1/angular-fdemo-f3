@@ -5,7 +5,7 @@
       <div class="flex-container">
         <mat-form-field class="flex-item">
           <mat-label>Diagnostic Centre Name</mat-label>
-          <mat-icon matPrefix>perm_identity</mat-icon>
+          <mat-icon matPrefix>local_pharmacy</mat-icon>
           <input matInput formControlName="DcName" alphaNumeric />
           <mat-error
             ><span
@@ -29,14 +29,16 @@
               >Non-Premium
             </mat-radio-button>
             <mat-radio-button value="Premium">Premium</mat-radio-button>
+            <mat-error class="mat-radio-error">
+              <span
+                *ngIf="
+                  form.controls.Grade.touched && form.controls.Grade.invalid
+                "
+              >
+                Please Choose a Grade</span
+              >
+            </mat-error>
           </mat-radio-group>
-          <mat-error>
-            <span
-              *ngIf="form.controls.Grade.touched && form.controls.Grade.invalid"
-            >
-              Please Choose a Grade</span
-            >
-          </mat-error>
         </div>
         <div class="flex-item matcheck">
           <mat-checkbox formControlName="Block" [color]="'primary'">
@@ -352,7 +354,7 @@
       <div class="flex-container">
         <mat-form-field class="flex-item">
           <mat-label>Bank Name</mat-label>
-          <mat-icon matPrefix>perm_identity</mat-icon>
+          <mat-icon matPrefix>savings</mat-icon>
           <input matInput formControlName="BankName" alphaNumeric />
           <mat-error
             ><span
@@ -381,8 +383,8 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Account Number</mat-label>
-          <mat-icon matPrefix>perm_identity</mat-icon>
-          <input matInput formControlName="AccountNo" numberOnly />
+          <mat-icon matPrefix>account_balance</mat-icon>
+          <input matInput formControlName="AccountNo" NumberOnly />
           <mat-error
             ><span
               *ngIf="
@@ -396,7 +398,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Branch Address</mat-label>
-          <mat-icon matPrefix>perm_identity</mat-icon>
+          <mat-icon matPrefix>store_mall_directory</mat-icon>
           <input matInput formControlName="BranchAddress" />
           <mat-error
             ><span
@@ -411,8 +413,8 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>IFSC Code</mat-label>
-          <mat-icon matPrefix>perm_identity</mat-icon>
-          <input matInput formControlName="IfscCode" />
+          <mat-icon matPrefix>drag_indicator</mat-icon>
+          <input matInput formControlName="IfscCode" alphaNumeric />
           <mat-error
             ><span
               *ngIf="
@@ -439,7 +441,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>PAN Number</mat-label>
-          <mat-icon matPrefix>perm_identity</mat-icon>
+          <mat-icon matPrefix>payment</mat-icon>
           <input matInput formControlName="PanNo" alphaNumeric />
           <mat-error
             ><span
@@ -457,12 +459,12 @@
       <div class="flex-container">
         <mat-form-field class="flex-item">
           <mat-label>Credit Period</mat-label>
-          <mat-icon matPrefix>perm_identity</mat-icon>
+          <mat-icon matPrefix>punch_clock</mat-icon>
           <input matInput formControlName="CreditPeriod" />
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Tariff Price</mat-label>
-          <mat-icon matPrefix></mat-icon>
+          <mat-icon matPrefix>currency_rupee</mat-icon>
           <mat-select formControlName="TariffPrice">
             <mat-option
               *ngFor="
@@ -573,7 +575,9 @@
         >
           Submit
         </button>
-        <button mat-raised-button extended (click)="reset()">Reset</button>
+        <button mat-raised-button extended (click)="reset()" class="btn-align">
+          Reset
+        </button>
       </div>
     </div>
   </form>
