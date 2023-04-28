@@ -409,9 +409,31 @@
     <mat-card>
       <div class="flex-container">
         <div class="flex-item">
-          <mat-label>MOU</mat-label>
-          <mat-icon matPrefix>perm_identity</mat-icon>
-          <input type="file" />
+          <browse-file [title]="'MOU'"></browse-file>
+        </div>
+        <div class="flex-item">
+          <browse-file [title]="'Bank Details'"></browse-file>
+        </div>
+        <div class="flex-item">
+          <browse-file [title]="'Tariff'"></browse-file>
+        </div>
+        <div class="flex-item">
+          <browse-file [title]="'PIS'"></browse-file>
+        </div>
+        <div class="flex-item">
+          <browse-file [title]="'Registration Certificates'"></browse-file>
+        </div>
+        <div class="flex-item">
+          <browse-file [title]="'Photos'"></browse-file>
+        </div>
+        <div class="flex-item">
+          <browse-file [title]="'DC Grading'"></browse-file>
+        </div>
+        <div class="flex-item">
+          <browse-file [title]="'DC Audit'"></browse-file>
+        </div>
+        <div class="flex-item">
+          <browse-file [title]="'Other Documents'"></browse-file>
         </div>
       </div>
     </mat-card>
