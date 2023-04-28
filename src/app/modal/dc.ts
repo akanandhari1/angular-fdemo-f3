@@ -19,6 +19,7 @@ export class DC {
   Spoc_Name: string = '';
   MER: string = '';
   X_RAY: string = '';
+  Lab: string = '';
   ECG: string = '';
   TwoD_ECHO: string = '';
   Urine_Cotinine: string = '';
@@ -105,6 +106,7 @@ export class DC {
       ],
       MER: [{ value: data.MER, disabled: disableField }],
       X_RAY: [{ value: data.X_RAY, disabled: disableField }],
+      Lab: [{ value: data.Lab, disabled: disableField }],
       ECG: [{ value: data.ECG, disabled: disableField }],
       TwoD_ECHO: [{ value: data.TwoD_ECHO, disabled: disableField }],
       Urine_Cotinine: [{ value: data.Urine_Cotinine, disabled: disableField }],
