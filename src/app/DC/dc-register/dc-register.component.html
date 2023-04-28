@@ -192,9 +192,18 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field class="flex-item">
-          <mat-label>X_RAY</mat-label>
+          <mat-label>X-RAY</mat-label>
           <mat-icon matPrefix></mat-icon>
           <mat-select formControlName="X_RAY">
+            <mat-option value="Yes"> Yes </mat-option>
+            <mat-option value="No"> No </mat-option>
+            <mat-option value="OS"> OS </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Lab</mat-label>
+          <mat-icon matPrefix></mat-icon>
+          <mat-select formControlName="Lab">
             <mat-option value="Yes"> Yes </mat-option>
             <mat-option value="No"> No </mat-option>
             <mat-option value="OS"> OS </mat-option>
@@ -246,7 +255,7 @@
           </mat-select>
         </mat-form-field>
         <mat-form-field class="flex-item">
-          <mat-label>Female_Tech</mat-label>
+          <mat-label>Female Technician</mat-label>
           <mat-icon matPrefix></mat-icon>
           <mat-select formControlName="Female_Tech">
             <mat-option value="Yes"> Yes </mat-option>
@@ -414,7 +423,7 @@
           <input matInput formControlName="CreditPeriod" />
         </mat-form-field>
         <mat-form-field class="flex-item">
-          <mat-label>Reports TAT</mat-label>
+          <mat-label>Tariff Price</mat-label>
           <mat-icon matPrefix></mat-icon>
           <mat-select formControlName="TariffPrice">
             <mat-option

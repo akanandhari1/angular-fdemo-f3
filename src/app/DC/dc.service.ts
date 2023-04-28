@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 export class DcService {
   public DC_LIST = [
     {
-      Dc_UID: 'DC_112',
+      Dc_UID: 'DC112',
       DcName: 'vijaya Diagnostics',
       Grade: 'Grade A',
       Block: true,
@@ -47,7 +47,7 @@ export class DcService {
       CreditPeriod: '1 week',
       BankDetails: null,
       Tariff: null,
-      TariffPrice: '1123.34',
+      TariffPrice: '2223.34',
       Pis: null,
       RegistrationCertificate: null,
       Photos: [],
@@ -57,7 +57,7 @@ export class DcService {
       Remarks: 'Registered a new DC',
     },
     {
-      Dc_UID: 'DC_113',
+      Dc_UID: 'DC113',
       DcName: 'Sai Diagnostics',
       Grade: 'Grade B',
       Block: true,
@@ -97,7 +97,7 @@ export class DcService {
       CreditPeriod: '1 week',
       BankDetails: null,
       Tariff: null,
-      TariffPrice: '1123.34',
+      TariffPrice: '3333.34',
       Pis: null,
       RegistrationCertificate: null,
       Photos: [],
@@ -107,7 +107,7 @@ export class DcService {
       Remarks: 'Registered a new DC',
     },
     {
-      Dc_UID: 'DC_114',
+      Dc_UID: 'DC114',
       DcName: 'DK Diagnostics',
       Grade: 'Grade D',
       Block: false,
@@ -147,7 +147,7 @@ export class DcService {
       CreditPeriod: '1 week',
       BankDetails: null,
       Tariff: null,
-      TariffPrice: '1123.34',
+      TariffPrice: '1111.34',
       Pis: null,
       RegistrationCertificate: null,
       Photos: [],
