@@ -5,10 +5,21 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DcService } from 'src/app/DC/dc.service';
 import { DC } from 'src/app/modal/dc';
+import { SharedExportService } from 'src/app/shared-export.service';
 export type filterValues = {
   Block: boolean;
 };
+export function coerceString(value: unknown, defaultValue = ''): string {
+  if (typeof value === 'string') {
+    return value;
+  }
 
+  if (value === null || value === undefined) {
+    return defaultValue;
+  }
+
+  return String(value);
+}
 @Component({
   selector: 'app-dc-fetch-data',
   templateUrl: './dc-fetch-data.component.html',
@@ -23,7 +34,8 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
   FilterControl = new FormControl();
 
   displayedColumns: string[] = [
-    'actions',
+    'actionEdit',
+    'actionDelete',
     'Dc_UID',
     'DcName',
     'Grade',
@@ -57,8 +69,11 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
     'SBI',
   ];
   public filterValues = {} as filterValues;
-
-  constructor(public dcService: DcService) {}
+  isShowBlock = false;
+  constructor(
+    public dcService: DcService,
+    public fileExportService: SharedExportService
+  ) {}
 
   ngOnInit(): void {
     this.dcService.getDcList().subscribe((rs) => {
@@ -70,25 +85,58 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.dataSource.filterPredicate = function (record, filter) {
-      debugger;
+    this.dataSource.filterPredicate = this.createFilter();
+    this.showBlockControl.valueChanges.subscribe((val: any) => {
+      this.isShowBlock = true;
+      this.applyBlockFilter(val);
+    });
+  }
+
+  createFilter(): (record: DC, filter: any) => boolean {
+    return function (record: DC, filter: any): boolean {
+      // console.log('block', record.Block);
+      // return record.Block == true ? true : false;
       var map = new Map(JSON.parse(filter));
       console.log('filter', filter);
       let isMatch = false;
       if (map.size != 0) {
-        for (let [key, value] of map) {
-          isMatch = record[key as keyof DC] == value;
-          if (!isMatch) {
-            return false;
+        if (map.size == 1) {
+          for (let [key, value] of map) {
+            let rec: any = record[key as keyof DC];
+            isMatch = rec == value;
+            if (!isMatch) {
+              return false;
+            }
           }
+          return isMatch;
+        } else {
+          for (let [key, value] of map) {
+            if (key != 'Block') {
+              let rec: any = record[key as keyof DC];
+              if (
+                rec != undefined &&
+                rec
+                  .toString()
+                  .toLowerCase()
+                  .indexOf(coerceString(value).toLowerCase()) != -1
+              ) {
+                let recBlocl = map.get('Block');
+                if (recBlocl == undefined) {
+                  return true;
+                } else {
+                  return record['Block'] !== undefined &&
+                    record['Block'] == true
+                    ? true
+                    : false;
+                }
+              }
+            }
+          }
+          return false;
         }
-        return isMatch;
       }
       return true;
     };
-    this.showBlockControl.valueChanges.subscribe((val) => {
-      this.applyBlockFilter(val);
-    });
   }
   ngAfterViewInit(): void {
     if (this.dataSource) {
@@ -99,7 +147,12 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
 
   clearFilter() {
     this.FilterControl.reset();
-    this.dataSource.filter = this.FilterControl.value.trim().toLowerCase();
+    this.showBlockControl.reset();
+    this.filterDictionary.clear();
+    var jsonString = JSON.stringify(
+      Array.from(this.filterDictionary.entries())
+    );
+    this.dataSource.filter = jsonString;
   }
   applyBlockFilter(isChecked: boolean) {
     if (isChecked) {
@@ -107,6 +160,7 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
     } else {
       this.filterDictionary.delete('Block');
     }
+    this.isShowBlock = true;
 
     var jsonString = JSON.stringify(
       Array.from(this.filterDictionary.entries())
@@ -117,13 +171,30 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
   }
 
   applyFilter() {
-    let filterValue = this.FilterControl.value;
+    let filterValue = this.FilterControl.value.trim().toLowerCase();
 
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    console.log(this.dataSource.filter);
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    for (let obj in new DC()) {
+      if (this.isShowBlock) {
+        this.filterDictionary.set(obj, filterValue);
+      } else {
+        if (obj != 'Block') {
+          this.filterDictionary.set(obj, filterValue);
+        }
+      }
     }
+    console.log(' this.filterDictionary', this.filterDictionary);
+    var jsonString = JSON.stringify(
+      Array.from(this.filterDictionary.entries())
+    );
+    console.log(' this.jsonString', jsonString);
+
+    this.dataSource.filter = jsonString;
   }
-  downloadExcel() {}
+  downloadExcel() {
+    let dateTim = new Date().toString();
+    this.fileExportService.exportAsExcelFile(
+      this.dataSource.filteredData,
+      'filedownload_' + dateTim
+    );
+  }
 }

@@ -17,23 +17,39 @@
       </button>
       <button
         mat-raised-button
-        color="primary"
+        extended
         (click)="clearFilter()"
         class="btn-align"
       >
         Clear
       </button>
     </div>
-
+    <div class="flex-container" style="justify-content:end">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="downloadExcel()"
+        class="btn-align"
+      >
+        Export
+      </button>
+    </div>
     <div class="mat-elevation-z8 table-margin">
       <table mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="actions">
+        <ng-container matColumnDef="actionEdit">
           <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
           <td mat-cell *matCellDef="let row">
             <span>
               <button mat-icon-button>
                 <mat-icon>edit</mat-icon>
               </button>
+            </span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="actionDelete">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let row">
+            <span>
               <button mat-icon-button>
                 <mat-icon color="warn">delete</mat-icon>
               </button>
