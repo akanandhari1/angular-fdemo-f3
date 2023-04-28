@@ -1,11 +1,21 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  EventEmitter,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
 import { DcService } from 'src/app/DC/dc.service';
+import { DeleteConfirmComponent } from 'src/app/insurance-provider/delete-confirm/delete-confirm.component';
 import { DC } from 'src/app/modal/dc';
 import { SharedExportService } from 'src/app/shared-export.service';
+import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog.service';
 export type filterValues = {
   Block: boolean;
 };
@@ -32,7 +42,8 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
   showBlockControl = new FormControl();
   FilterControl = new FormControl();
-
+  @Output()
+  public navigatetoDetail = new EventEmitter();
   displayedColumns: string[] = [
     'actionEdit',
     'actionDelete',
@@ -72,7 +83,9 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
   isShowBlock = false;
   constructor(
     public dcService: DcService,
-    public fileExportService: SharedExportService
+    public fileExportService: SharedExportService,
+    public dialog: MatDialog,
+    public confirmDialog: ConfirmationDialogService
   ) {}
 
   ngOnInit(): void {
@@ -91,7 +104,36 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
       this.applyBlockFilter(val);
     });
   }
+  show(index: any) {
+    this.confirmDialog
+      .confirm(
+        'Confirm Delete',
+        'Are you sure you want to delete this DC?',
+        'Yes',
+        'No',
+        false
+      )
+      .subscribe((result) => {
+        if (result) {
+        }
+      });
+  }
+  openDialog(index: any) {
+    const dialogRef = this.dialog.open(DeleteConfirmComponent, {
+      width: '  330px',
+    });
 
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        //this.deleteFile(index);
+      }
+    });
+  }
+  showDcDetail(data: any) {
+    this.dcService.currentDC.next(data);
+    this.navigatetoDetail.emit(1);
+    // this.dialog.open(CustomerDetailComponent, { data: data });
+  }
   createFilter(): (record: DC, filter: any) => boolean {
     return function (record: DC, filter: any): boolean {
       // console.log('block', record.Block);

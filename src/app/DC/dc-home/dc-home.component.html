@@ -1,8 +1,14 @@
-<mat-tab-group mat-align-tabs="end">
-  <mat-tab label="Register New DC">
-    <app-dc-register> </app-dc-register>
-  </mat-tab>
-  <mat-tab label="Fetch Data">
-    <app-dc-fetch-data> </app-dc-fetch-data>
-  </mat-tab>
-</mat-tab-group>
+<ng-container *ngIf="Dchomescreen">
+  <mat-tab-group mat-align-tabs="end" [selectedIndex]="selectedTab">
+    <mat-tab label="Register New DC">
+      <app-dc-register> </app-dc-register>
+    </mat-tab>
+    <mat-tab label="Fetch Data">
+      <app-dc-fetch-data (navigatetoDetail)="navigate($event)">
+      </app-dc-fetch-data>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>
+<ng-container *ngIf="!Dchomescreen">
+  <edit-dc (navigatetoDetail)="navigate($event)"></edit-dc>
+</ng-container>

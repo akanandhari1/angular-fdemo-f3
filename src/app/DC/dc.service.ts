@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { DC } from '../modal/dc';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DcService {
+  public currentDC: BehaviorSubject<DC>;
   public DC_LIST = [
     {
       Dc_UID: 'DC112',
       DcName: 'vijaya Diagnostics',
-      Grade: 'Grade A',
+      Grade: 'Premium',
       Block: true,
       Address: 'DC street, DC colony Ahmedabad',
       Location: 'Techno Park',
@@ -50,7 +52,7 @@ export class DcService {
       TariffPrice: '2223.34',
       Pis: null,
       RegistrationCertificate: null,
-      Photos: [],
+      Photos: null,
       DCGrading: null,
       DCAudit: null,
       otherDocs: null,
@@ -59,7 +61,7 @@ export class DcService {
     {
       Dc_UID: 'DC113',
       DcName: 'Sai Diagnostics',
-      Grade: 'Grade B',
+      Grade: 'Premium',
       Block: true,
       Address: 'DC street, DC colony Ahmedabad',
       Location: 'Techno Park',
@@ -100,7 +102,7 @@ export class DcService {
       TariffPrice: '3333.34',
       Pis: null,
       RegistrationCertificate: null,
-      Photos: [],
+      Photos: null,
       DCGrading: null,
       DCAudit: null,
       otherDocs: null,
@@ -109,7 +111,7 @@ export class DcService {
     {
       Dc_UID: 'DC114',
       DcName: 'DK Diagnostics',
-      Grade: 'Grade D',
+      Grade: 'Premium',
       Block: false,
       Address: 'DC street, DC colony Ahmedabad',
       Location: 'Techno Park',
@@ -150,7 +152,7 @@ export class DcService {
       TariffPrice: '1111.34',
       Pis: null,
       RegistrationCertificate: null,
-      Photos: [],
+      Photos: null,
       DCGrading: null,
       DCAudit: null,
       otherDocs: null,
@@ -158,7 +160,9 @@ export class DcService {
     },
   ];
   public options = ['Yes', 'No', 'OS'];
-  constructor() {}
+  constructor() {
+    this.currentDC = new BehaviorSubject<DC>(new DC());
+  }
   public getDcList(): Observable<any> {
     return of(this.DC_LIST);
   }

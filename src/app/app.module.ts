@@ -49,6 +49,7 @@ import { DcHomeComponent } from './DC/dc-home/dc-home.component';
 import { DcRegisterComponent } from './DC/dc-register/dc-register.component';
 import { DcFetchDataComponent } from './DC/dc-fetch-data/dc-fetch-data.component';
 import { BrowseFileComponent } from './shared/browse-file/browse-file.component';
+import { EditDcComponent } from './DC/edit-dc/edit-dc.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { BrowseFileComponent } from './shared/browse-file/browse-file.component'
     DcRegisterComponent,
     DcFetchDataComponent,
     BrowseFileComponent,
+    EditDcComponent,
   ],
   imports: [
     AppRouterModule,

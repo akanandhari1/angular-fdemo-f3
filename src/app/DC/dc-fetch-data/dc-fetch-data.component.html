@@ -39,13 +39,17 @@
         <ng-container matColumnDef="actionEdit">
           <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
           <td mat-cell *matCellDef="let row">
-            <mat-icon>edit</mat-icon>
+            <mat-icon class="pointer" (click)="showDcDetail(row)"
+              >edit</mat-icon
+            >
           </td>
         </ng-container>
         <ng-container matColumnDef="actionDelete">
           <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-          <td mat-cell *matCellDef="let row">
-            <mat-icon color="warn">delete</mat-icon>
+          <td mat-cell *matCellDef="let row; let index = index">
+            <mat-icon class="pointer" color="warn" (click)="show(index)"
+              >delete</mat-icon
+            >
           </td>
         </ng-container>
         <ng-container matColumnDef="Dc_UID">
