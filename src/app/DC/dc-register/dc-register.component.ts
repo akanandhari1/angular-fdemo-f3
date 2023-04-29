@@ -32,7 +32,6 @@ export class DcRegisterComponent implements OnInit {
   ngOnInit(): void {}
   reset() {
     this.form.reset();
-    window.location.reload();
 
     //this.form = DC.createForm();
     this.form.markAsUntouched();
