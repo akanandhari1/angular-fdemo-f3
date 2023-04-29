@@ -1,5 +1,10 @@
 <section>
-  <form [formGroup]="form" (ngSubmit)="onFormSubmit()" autocomplete="off">
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onFormSubmit()"
+    formGroupDirective
+    autocomplete="off"
+  >
     <mat-card>
       <h4 class="title">CREATE</h4>
       <div class="flex-container">

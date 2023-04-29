@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormGroupDirective } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { DcService } from 'src/app/DC/dc.service';
 import { DC } from 'src/app/modal/dc';
 import { IProviderService } from 'src/app/provider/i-provider.service';
@@ -13,7 +14,12 @@ export class DcRegisterComponent implements OnInit {
   public form: FormGroup;
   public dc: DC = new DC();
   public stateList: any[];
-  constructor(public oService: DcService, public gService: IProviderService) {
+  @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
+  constructor(
+    public oService: DcService,
+    public gService: IProviderService,
+    private _snackBar: MatSnackBar
+  ) {
     this.form = DC.createForm();
     this.gService.getState().subscribe((states) => {
       this.stateList = states.map((s: any) => {
@@ -26,14 +32,36 @@ export class DcRegisterComponent implements OnInit {
   ngOnInit(): void {}
   reset() {
     this.form.reset();
+    window.location.reload();
+
+    //this.form = DC.createForm();
     this.form.markAsUntouched();
+
     this.form.markAsPristine();
-    this.form.setValue(new DC(), { emitEvent: false });
+    this.form.setValue({} as DC, { emitEvent: false });
+    // this.form.setValue({} as DC, { emitEvent: false });
+    // Object.keys(this.form.controls).forEach((key) => {
+    //   const control = this.form.controls[key];
+    //   control.setErrors(null);
+    //   control.markAsPristine();
+    //   control.markAsUntouched();
+    //   control.clearValidators();
+    //   control.updateValueAndValidity();
+    // });
+    // setTimeout(() => this.formGroupDirective.resetForm(), 200);
   }
   onFormSubmit() {
-    console.log(this.form);
-    this.form.markAllAsTouched();
-    this.form.updateValueAndValidity();
+    console.log('form', this.form);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+    } else {
+      this._snackBar.open('Submitted successfully', 'Close', {
+        panelClass: 'success-snackbar',
+        duration: 6000,
+        verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
+        horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
+      });
+    }
   }
   captureEmit(event: any, name: any) {
     this.form.controls[name].setValue(event);

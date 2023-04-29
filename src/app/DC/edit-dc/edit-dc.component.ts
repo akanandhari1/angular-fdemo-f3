@@ -4,6 +4,7 @@ import { DcService } from 'src/app/DC/dc.service';
 import { DC } from 'src/app/modal/dc';
 import { IProviderService } from 'src/app/provider/i-provider.service';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'edit-dc',
   templateUrl: './edit-dc.component.html',
@@ -18,7 +19,8 @@ export class EditDcComponent implements OnInit {
   constructor(
     public oService: DcService,
     public gService: IProviderService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private _snackBar: MatSnackBar
   ) {
     this.oService.currentDC.subscribe((result) => {
       this.form = DC.createForm(result);
@@ -42,9 +44,17 @@ export class EditDcComponent implements OnInit {
     this.form.setValue(new DC(), { emitEvent: false });
   }
   onFormSubmit() {
-    console.log(this.form);
-    this.form.markAllAsTouched();
-    this.form.updateValueAndValidity();
+    console.log('form', this.form);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+    } else {
+      this._snackBar.open('Submitted successfully', 'Close', {
+        panelClass: 'success-snackbar',
+        duration: 6000,
+        verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
+        horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
+      });
+    }
   }
   captureEmit(event: any, name: any) {
     this.form.controls[name].setValue(event);
