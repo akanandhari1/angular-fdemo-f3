@@ -129,13 +129,14 @@ export class CreateRegisterComponent implements OnInit {
         null,
         [Validators.minLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
       ],
-      CustomerName: [null],
+      CustomerName: [null, [Validators.required]],
       Gender: [null, [Validators.required]],
       DOB: [null, [Validators.required]],
       CutomerNo: [
         null,
         [Validators.minLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
       ],
+      Address: [null, [Validators.required]],
       city: [null, [Validators.required]],
       State: [null, [Validators.required]],
       Pincode: [

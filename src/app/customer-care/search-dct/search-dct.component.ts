@@ -35,11 +35,11 @@ export class SearchDctComponent implements OnInit {
       this.dcDetails = result;
     });
   }
-  selectonlyone(dc: DcDetails) {
+  selectonlyone(dc: DcDetails, value: any) {
     this.dcDetails.forEach((odc) => {
       odc.selected = false;
     });
-    dc.selected = true;
+    dc.selected = value;
   }
   selectDc() {
     let dcDetailsF = this.dcDetails.filter((s) => {

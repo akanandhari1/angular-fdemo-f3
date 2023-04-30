@@ -14,7 +14,6 @@
   <mat-card class="flex-item-4">
     <form [formGroup]="form" (ngSubmit)="onFormSubmit()" autocomplete="off">
       <div class="flex-container">
-        <h5 class="title m-0">Insurance Details</h5>
         <div style="margin-left: auto ">
           <mat-icon class="pointer" (click)="changeEdit()">
             edit_note
@@ -114,6 +113,16 @@
           <mat-label>Customer Name</mat-label>
           <input matInput formControlName="CustomerName" alphabetwithSpecial />
           <mat-icon matPrefix> person_pin</mat-icon>
+          <mat-error>
+            <span
+              *ngIf="
+                form.controls.CustomerName.touched &&
+                form.controls.CustomerName.invalid
+              "
+            >
+              Please Enter Customer Name</span
+            >
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Gender</mat-label>
@@ -173,6 +182,20 @@
               "
             >
               Please enter mobile number</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Customer Address</mat-label>
+          <input matInput formControlName="Address" alphabetOnly required />
+          <mat-icon matPrefix> location_city</mat-icon>
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.Address.touched && form.controls.Address.invalid
+              "
+            >
+              Please enter city</span
             >
           </mat-error>
         </mat-form-field>
@@ -300,7 +323,9 @@
 
       <div class="flex-container" *ngIf="!disableEdit">
         <div class="bottom-pane">
-          <button mat-raised-button color="primary" (click)="save()">Save</button>
+          <button mat-raised-button color="primary" (click)="save()">
+            Save
+          </button>
           <!-- <button mat-raised-button extended (click)="reset()">Clear</button> -->
         </div>
       </div>

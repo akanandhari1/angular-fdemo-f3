@@ -4,7 +4,7 @@
     <div class="flex-container">
       <mat-form-field class="flex-item">
         <mat-label>Search By Pincode</mat-label>
-        <input matInput  [(ngModel)]="searchPinCode" />
+        <input matInput [(ngModel)]="searchPinCode" />
         <mat-icon matPrefix> location_on</mat-icon>
       </mat-form-field>
       <div class="flex-item">
@@ -32,7 +32,7 @@
                 <mat-checkbox
                   [(ngModel)]="dcdetail.selected"
                   [color]="'primary'"
-                  (ngModelChange)="selectonlyone(dcdetail)"
+                  (ngModelChange)="selectonlyone(dcdetail, dcdetail.selected)"
                 >
                 </mat-checkbox>
               </td>

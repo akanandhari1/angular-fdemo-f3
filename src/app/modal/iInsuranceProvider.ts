@@ -20,6 +20,7 @@ export class InsuranceProvider {
   Age: string = '';
   Address: string = '';
   State: string = '';
+
   City: string = '';
   Pincode: string = '';
   AgentName: string = '';
@@ -51,7 +52,10 @@ export class InsuranceProvider {
         { value: data.AgentNumber, disabled: disableField },
         [Validators.maxLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
       ],
-      CustomerName: [{ value: data.CustomerName, disabled: disableField }],
+      CustomerName: [
+        { value: data.CustomerName, disabled: disableField },
+        [Validators.required],
+      ],
       Gender: [
         { value: data.Gender, disabled: disableField },
         [Validators.required],
@@ -60,6 +64,10 @@ export class InsuranceProvider {
       CustomerNo: [
         { value: data.CustomerNo || '', disabled: disableField },
         [Validators.maxLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
+      ],
+      Address: [
+        { value: data.Address || '', disabled: disableField },
+        [Validators.required],
       ],
       City: [
         { value: data.City || '', disabled: disableField },

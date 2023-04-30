@@ -77,6 +77,17 @@
           <mat-label>Customer Name</mat-label>
           <input matInput formControlName="CustomerName" alphabetwithSpecial />
           <mat-icon matPrefix> person_pin</mat-icon>
+
+          <mat-error>
+            <span
+              *ngIf="
+                form.controls.CustomerName.touched &&
+                form.controls.CustomerName.invalid
+              "
+            >
+              Please Enter Customer Name</span
+            >
+          </mat-error>
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Gender</mat-label>
@@ -136,6 +147,20 @@
               "
             >
               Please enter a valid mobile number</span
+            >
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="flex-item">
+          <mat-label>Customer Address</mat-label>
+          <input matInput formControlName="Address" alphabetOnly required />
+          <mat-icon matPrefix> location_city</mat-icon>
+          <mat-error
+            ><span
+              *ngIf="
+                form.controls.Address.touched && form.controls.Address.invalid
+              "
+            >
+              Please enter city</span
             >
           </mat-error>
         </mat-form-field>
