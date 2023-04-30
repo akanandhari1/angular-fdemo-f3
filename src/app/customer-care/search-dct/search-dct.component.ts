@@ -54,9 +54,13 @@ export class SearchDctComponent implements OnInit {
       this.openSnackBar();
     }
   }
-  openSnackBar() {
-    this._snackBar.open('Kindly Select a DC', '', {
-      duration: 5 * 1000,
+
+  openSnackBar(action = 'failure') {
+    this._snackBar.open('Kindly Select a DC', 'Close', {
+      panelClass: action == 'success' ? 'success-snackbar' : 'failure-snackbar',
+      duration: 6000,
+      verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
+      horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
     });
   }
 }
