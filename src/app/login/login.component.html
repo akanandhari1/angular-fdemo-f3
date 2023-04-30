@@ -25,6 +25,7 @@
           [type]="hide ? 'password' : 'text'"
           placeholder="Enter password"
           formControlName="Password"
+          (keydown.enter)="onFormSubmit()"
         />
         <button
           mat-icon-button
