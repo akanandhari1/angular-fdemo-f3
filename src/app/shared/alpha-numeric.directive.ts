@@ -29,6 +29,19 @@ export class AlphaNumericDirective {
       event.preventDefault();
     }
   }
+  @HostListener('paste', ['$event'])
+  onPaste(event: ClipboardEvent) {
+    // Allow Backspace, tab, end, and home keys
+
+    let current: any = this.el.nativeElement.value;
+    // console.log(current.length);
+    let clipboardData:any = event.clipboardData;
+    let next: any = current.concat(clipboardData.getData('text'));
+
+    if (next && !String(next).match(this.regex)) {
+      event.preventDefault();
+    }
+  }
 }
 
 @Directive({
@@ -56,6 +69,19 @@ export class AlphabetDirective {
     let current: string = this.el.nativeElement.value;
     // console.log(current.length);
     let next: string = current.concat(event.key);
+
+    if (next && !String(next).match(this.regex)) {
+      event.preventDefault();
+    }
+  }
+  @HostListener('paste', ['$event'])
+  onPaste(event: ClipboardEvent) {
+    // Allow Backspace, tab, end, and home keys
+
+    let current: any = this.el.nativeElement.value;
+    // console.log(current.length);
+    let clipboardData:any = event.clipboardData;
+    let next: any = current.concat(clipboardData.getData('text'));
 
     if (next && !String(next).match(this.regex)) {
       event.preventDefault();
@@ -89,6 +115,19 @@ export class CustomerAlphabetDirective {
     let current: string = this.el.nativeElement.value;
     // console.log(current.length);
     let next: string = current.concat(event.key);
+
+    if (next && !String(next).match(this.regex)) {
+      event.preventDefault();
+    }
+  }
+  @HostListener('paste', ['$event'])
+  onPaste(event: ClipboardEvent) {
+    // Allow Backspace, tab, end, and home keys
+
+    let current: any = this.el.nativeElement.value;
+    // console.log(current.length);
+    let clipboardData:any = event.clipboardData;
+    let next: any = current.concat(clipboardData.getData('text'));
 
     if (next && !String(next).match(this.regex)) {
       event.preventDefault();
