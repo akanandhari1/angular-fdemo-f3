@@ -1,7 +1,12 @@
 <mat-card>
   <h4 class="title">CREATE</h4>
   <section>
-    <form [formGroup]="form" (ngSubmit)="onFormSubmit()" autocomplete="off">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onFormSubmit(formDirective)"
+      #formDirective="ngForm"
+      autocomplete="off"
+    >
       <div class="flex-container">
         <mat-form-field class="flex-item">
           <mat-label>Insurance Provider</mat-label>
@@ -315,7 +320,9 @@
           <button mat-raised-button type="submit" color="primary">
             Submit
           </button>
-          <button mat-raised-button extended (click)="reset()">Reset</button>
+          <button mat-raised-button extended (click)="reset(formDirective)">
+            Reset
+          </button>
         </div>
       </div>
     </form>

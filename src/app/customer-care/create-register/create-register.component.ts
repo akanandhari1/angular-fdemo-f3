@@ -105,10 +105,11 @@ export class CreateRegisterComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.form.get('InsuranceProvider'));
   }
-  onFormSubmit() {
+  onFormSubmit(formDirective: any) {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
     } else {
+      formDirective.resetForm();
       this._snackBar.open('Submitted successfully', 'Close', {
         panelClass: 'success-snackbar',
         duration: 6000,
@@ -150,17 +151,17 @@ export class CreateRegisterComponent implements OnInit {
       LabTests: [[], [Validators.required]],
     });
   }
-  reset() {
-    this.form.reset();
+  reset(formDirective: any) {
     this.labTests = [];
-    this.form.setValue({}, { emitEvent: false });
 
+    formDirective.resetForm();
+    this.form.reset();
+    // this.labTests = [];
+    this.form.setValue({}, { emitEvent: false });
     // this.labTests = [];
     this.labTestCtrl.reset();
     this.labTestCtrl.markAsUntouched();
     this.labTestCtrl.markAsPristine();
-    this.form.markAsUntouched();
-    this.form.markAsPristine();
   }
 
   @ViewChild('labTestInput') labTestInput: ElementRef<HTMLInputElement>;
