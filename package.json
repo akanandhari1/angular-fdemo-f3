@@ -25,6 +25,7 @@
     "ajv": "^8.4.0",
     "file-saver": "^2.0.5",
     "lodash": "^4.17.11",
+    "moment": "*",
     "ngx-file-drag-drop": "^5.1.1",
     "ngx-mat-timepicker": "^13.2.7",
     "rxjs": "~6.6.3",
