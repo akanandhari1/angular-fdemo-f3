@@ -12,6 +12,10 @@ import { IProviderService } from 'src/app/provider/i-provider.service';
 })
 export class DcRegisterComponent implements OnInit {
   public form: FormGroup;
+  public firstForm: FormGroup;
+  public sceondForm: FormGroup;
+  public thirdForm: FormGroup;
+  public fourthForm: FormGroup;
   public dc: DC = new DC();
   public stateList: any[];
   @ViewChild(FormGroupDirective) formGroupDirective: FormGroupDirective;
@@ -21,6 +25,10 @@ export class DcRegisterComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {
     this.form = DC.createForm();
+    this.firstForm = DC.firstForm();
+    this.sceondForm = DC.sceondForm();
+    this.thirdForm = DC.thirdForm();
+    this.fourthForm = DC.fourthForm();
     this.gService.getState().subscribe((states) => {
       this.stateList = states.map((s: any) => {
         return s.state;
@@ -50,17 +58,18 @@ export class DcRegisterComponent implements OnInit {
     // setTimeout(() => this.formGroupDirective.resetForm(), 200);
   }
   onFormSubmit() {
-    console.log('form', this.form);
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-    } else {
-      this._snackBar.open('Submitted successfully', 'Close', {
-        panelClass: 'success-snackbar',
-        duration: 6000,
-        verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
-        horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
-      });
+    console.log('form', this.firstForm);
+    if (this.firstForm.invalid) {
+      this.firstForm.markAllAsTouched();
     }
+    // } else {
+    //   this._snackBar.open('Submitted successfully', 'Close', {
+    //     panelClass: 'success-snackbar',
+    //     duration: 6000,
+    //     verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
+    //     horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
+    //   });
+    // }
   }
   captureEmit(event: any, name: any) {
     this.form.controls[name].setValue(event);
