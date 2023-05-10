@@ -12,6 +12,9 @@
   // justify-content: center;
   align-items: center;
 }
+.mr-top {
+  margin-top: 20px;
+}
 .mat-radio-error {
   font-size: 65%;
 }
@@ -20,4 +23,26 @@
 }
 .mat-raised-button {
   margin: 10px;
+}
+.bold {
+  font-weight: bold;
+  font-size: 12px;
+}
+.row {
+  display: flex;
+  flex-flow: row wrap;
+}
+.col-1 {
+  width: 10%;
+  min-width: 150px;
+  margin: 5px;
+}
+.col-2 {
+  width: 35%;
+  min-width: 150px;
+  margin: 5px;
+}
+.full {
+  width: 90%;
+  margin: 5px;
 }

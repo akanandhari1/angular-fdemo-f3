@@ -108,9 +108,11 @@ export class BrowseFileComponent implements OnInit {
       for (const item of files) {
         this.files.push(item);
 
-        this.out.emit(item);
         item.progress = 0;
       }
+
+      this.out.emit(this.files);
+      console.log(this.files);
       this.uploadFilesSimulator(0);
     }
   }

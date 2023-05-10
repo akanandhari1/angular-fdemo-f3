@@ -1,15 +1,15 @@
-<mat-stepper [linear]="true" #stepper>
+<mat-stepper [linear]="true" #stepper labelPosition="bottom">
   <mat-step [stepControl]="firstForm">
     <form
       [formGroup]="firstForm"
       (ngSubmit)="onFormSubmit()"
-      formGroupDirective
+      #formDirective1="ngForm"
       autocomplete="off"
     >
       <mat-card>
-        <!-- <h4 class="title">CREATE</h4> -->
+        <h4 class="title">DC Details</h4>
         <div class="flex-container">
-          <mat-form-field class="flex-item">
+          <mat-form-field class="fklex-item">
             <mat-label>Diagnostic Centre Name</mat-label>
             <mat-icon matPrefix>local_pharmacy</mat-icon>
             <input matInput formControlName="DcName" alphaNumeric />
@@ -239,14 +239,18 @@
       <div>
         <!-- <button mat-button matStepperPrevious>Back</button> -->
         <button mat-raised-button color="primary" matStepperNext>Next</button>
-        <button mat-raised-button color="primary" (click)="stepper.reset()">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="resetForm(stepper, formDirective1)"
+        >
           Reset
         </button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="sceondForm">
-    <form [formGroup]="sceondForm">
+    <form [formGroup]="sceondForm" #formDirective2="ngForm">
       <mat-card>
         <h4 class="title">Available Features</h4>
         <div class="flex-container">
@@ -287,7 +291,7 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field class="flex-item">
-            <mat-label>TwoD_ECHO</mat-label>
+            <mat-label>2D-ECHO</mat-label>
             <mat-icon matPrefix>biotech</mat-icon>
             <mat-select formControlName="TwoD_ECHO">
               <mat-option value="Yes"> Yes </mat-option>
@@ -296,7 +300,7 @@
             </mat-select>
           </mat-form-field>
           <mat-form-field class="flex-item">
-            <mat-label>Urine_Cotinine</mat-label>
+            <mat-label>Urine Cotinine</mat-label>
             <mat-icon matPrefix>biotech</mat-icon>
             <mat-select formControlName="Urine_Cotinine">
               <mat-option value="Yes"> Yes </mat-option>
@@ -350,7 +354,7 @@
                     '9'
                   ]
                 "
-                value="number"
+                [value]="number"
               >
                 {{ number }}
               </mat-option>
@@ -396,14 +400,18 @@
           Back
         </button>
         <button mat-raised-button color="primary" matStepperNext>Next</button>
-        <button mat-raised-button color="primary" (click)="stepper.reset()">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="resetForm(stepper, formDirective2)"
+        >
           Reset
         </button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="thirdForm">
-    <form [formGroup]="thirdForm">
+    <form [formGroup]="thirdForm" #formDirective3="ngForm">
       <mat-card>
         <h4 class="title">Bank Details</h4>
         <div class="flex-container">
@@ -524,14 +532,18 @@
           Back
         </button>
         <button mat-raised-button color="primary" matStepperNext>Next</button>
-        <button mat-raised-button color="primary" (click)="stepper.reset()">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="resetForm(stepper, formDirective3)"
+        >
           Reset
         </button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="fourthForm">
-    <form [formGroup]="fourthForm">
+    <form [formGroup]="fourthForm" #formDirective4="ngForm">
       <mat-card>
         <h4 class="title">Upload Documents</h4>
         <div class="flex-container">
@@ -555,7 +567,7 @@
                     'Exceptional'
                   ]
                 "
-                value="number"
+                [value]="number"
               >
                 {{ number }}
               </mat-option>
@@ -647,10 +659,509 @@
         <button mat-raised-button color="primary" matStepperPrevious>
           Back
         </button>
-        <button mat-raised-button color="primary" (click)="stepper.reset()">
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="resetForm(stepper, formDirective4)"
+        >
           Reset
         </button>
       </div>
     </form>
+  </mat-step>
+  <mat-step>
+    <h4 class="title">Summary</h4>
+
+    <mat-card>
+      <h4 class="title">DC Details</h4>
+
+      <div class="flex-container">
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Diagnostic Centre Name</div>
+            <div class="col-2">{{ firstForm.controls.DcName.value }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Grade</div>
+            <div class="col-2">{{ firstForm.controls.Grade.value }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Block</div>
+            <div class="col-2">
+              {{ firstForm.controls.Block.value ? 'Yes' : 'No' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Address</div>
+            <div class="col-2">{{ firstForm.controls.Address.value }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Location</div>
+            <div class="col-2">
+              {{ firstForm.controls.Location.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">City</div>
+            <div class="col-2">{{ firstForm.controls.City.value || '-' }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">City</div>
+            <div class="col-2">{{ firstForm.controls.City.value || '-' }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">State</div>
+            <div class="col-2">{{ firstForm.controls.State.value || '-' }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Pincode</div>
+            <div class="col-2">
+              {{ firstForm.controls.Pincode.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Contact Person 1 Name</div>
+            <div class="col-2">
+              {{ firstForm.controls.ContactPerson1Name.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Contact Person 1 Number</div>
+            <div class="col-2">
+              {{ firstForm.controls.ContactPerson1No.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Contact Person 2 Name</div>
+            <div class="col-2">
+              {{ firstForm.controls.ContactPerson2Name.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Contact Person 2 Number</div>
+            <div class="col-2">
+              {{ firstForm.controls.ContactPerson2No.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Landline Number</div>
+            <div class="col-2">
+              {{ firstForm.controls.Landline.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Email</div>
+            <div class="col-2">{{ firstForm.controls.Email.value || '-' }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">SPOC Name</div>
+            <div class="col-2">
+              {{ firstForm.controls.Spoc_Name.value || '-' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="mr-top">
+      <h4 class="title">Available Features</h4>
+
+      <div class="flex-container">
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">MER</div>
+            <div class="col-2">{{ sceondForm.controls.MER.value }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">X-RAY</div>
+            <div class="col-2">{{ sceondForm.controls.X_RAY.value }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Lab</div>
+            <div class="col-2">{{ sceondForm.controls.Lab.value }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">ECG</div>
+            <div class="col-2">{{ sceondForm.controls.ECG.value }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">2D-ECHO</div>
+            <div class="col-2">
+              {{ sceondForm.controls.TwoD_ECHO.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Urine Cotinine</div>
+            <div class="col-2">
+              {{ sceondForm.controls.Urine_Cotinine.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">CTMT</div>
+            <div class="col-2">{{ sceondForm.controls.CTMT.value || '-' }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">USG</div>
+            <div class="col-2">{{ sceondForm.controls.USG.value || '-' }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Female Technician</div>
+            <div class="col-2">
+              {{ sceondForm.controls.Female_Tech.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Reports TAT</div>
+            <div class="col-2">
+              {{ sceondForm.controls.ReportsTat.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Home Visit</div>
+            <div class="col-2">
+              {{ sceondForm.controls.HomeVisit.value ? 'Yes' : 'No' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">DCVisit</div>
+            <div class="col-2">
+              {{ sceondForm.controls.DCVisit.value ? 'Yes' : 'No' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Contact Person 2 Number</div>
+            <div class="col-2">
+              {{ firstForm.controls.ContactPerson2No.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Landline Number</div>
+            <div class="col-2">
+              {{ firstForm.controls.Landline.value || '-' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="mr-top">
+      <h4 class="title">Insurance Provider</h4>
+      <div class="flex-container">
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">TATA AIA</div>
+            <div class="col-2">
+              {{ sceondForm.controls.TATA_AIG.value ? 'Yes' : 'No' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">HDFC</div>
+            <div class="col-2">
+              {{ sceondForm.controls.HDFC.value ? 'Yes' : 'No' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">SBI</div>
+            <div class="col-2">
+              {{ sceondForm.controls.SBI.value ? 'Yes' : 'No' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="mr-top">
+      <h4 class="title">Bank Details</h4>
+
+      <div class="flex-container">
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Bank Name</div>
+            <div class="col-2">{{ thirdForm.controls.BankName.value }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Account Holder Name</div>
+            <div class="col-2">
+              {{ thirdForm.controls.AccHolderName.value }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Account Holder Name</div>
+            <div class="col-2">
+              {{ thirdForm.controls.AccHolderName.value }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Account Number</div>
+            <div class="col-2">{{ thirdForm.controls.AccountNo.value }}</div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Branch Address</div>
+            <div class="col-2">
+              {{ thirdForm.controls.BranchAddress.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">IFSC Code</div>
+            <div class="col-2">
+              {{ thirdForm.controls.IfscCode.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Name(As per PAN)</div>
+            <div class="col-2">
+              {{ thirdForm.controls.PanName.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">PAN Number</div>
+            <div class="col-2">{{ thirdForm.controls.PanNo.value || '-' }}</div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="mr-top">
+      <h4 class="title">Documents</h4>
+      <div class="flex-container">
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Credit Period</div>
+            <div class="col-2">
+               {{ fourthForm.controls.CreditPeriod.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Tariff Price</div>
+            <div class="col-2">
+               {{ fourthForm.controls.TariffPrice.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">MOU</div>
+            <div class="col-2">
+              {{
+                (fourthForm.controls.Mou.value
+                  ? fourthForm.controls.Mou.value.name +
+                    '(' +
+                    formatBytes(fourthForm.controls.Mou.value.size) +
+                    ')'
+                  : '') || '-'
+              }}
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Bank Details</div>
+            <div class="col-2">
+              {{
+                (fourthForm.controls.BankDetails.value
+                  ? fourthForm.controls.BankDetails.value.name +
+                    '(' +
+                    formatBytes(fourthForm.controls.BankDetails.value.size) +
+                    ')'
+                  : '') || '-'
+              }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Tariff</div>
+            <div class="col-2">
+              {{
+                (fourthForm.controls.Tariff.value
+                  ? fourthForm.controls.Tariff.value.name +
+                    '(' +
+                    formatBytes(fourthForm.controls.Tariff.value.size) +
+                    ')'
+                  : '') || '-'
+              }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Pis</div>
+            <div class="col-2">
+              {{
+                (fourthForm.controls.Pis.value
+                  ? fourthForm.controls.Pis.value.name +
+                    '(' +
+                    formatBytes(fourthForm.controls.Pis.value.size) +
+                    ')'
+                  : '') || '-'
+              }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">RegistrationCertificate</div>
+            <div class="col-2">
+              {{
+                (fourthForm.controls.RegistrationCertificate.value
+                  ? fourthForm.controls.RegistrationCertificate.value.name +
+                    '(' +
+                    formatBytes(
+                      fourthForm.controls.RegistrationCertificate.value.size
+                    ) +
+                    ')'
+                  : '') || '-'
+              }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Photos</div>
+            <div class="col-2">
+              {{
+                (fourthForm.controls.Photos.value
+                  ? fourthForm.controls.Photos.value.name +
+                    '(' +
+                    formatBytes(fourthForm.controls.Photos.value.size) +
+                    ')'
+                  : '') || '-'
+              }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">DC Grading</div>
+            <div class="col-2">
+              {{
+                (fourthForm.controls.DCGrading.value
+                  ? fourthForm.controls.DCGrading.value.name +
+                    '(' +
+                    formatBytes(fourthForm.controls.DCGrading.value.size) +
+                    ')'
+                  : '') || '-'
+              }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">DCAudit</div>
+            <div class="col-2">
+              {{
+                (fourthForm.controls.DCAudit.value
+                  ? fourthForm.controls.DCAudit.value.name +
+                    '(' +
+                    formatBytes(fourthForm.controls.DCAudit.value.size) +
+                    ')'
+                  : '') || '-'
+              }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">otherDocs</div>
+            <div class="col-2">
+              {{
+                (fourthForm.controls.otherDocs.value
+                  ? fourthForm.controls.otherDocs.value.name +
+                    '(' +
+                    formatBytes(fourthForm.controls.otherDocs.value.size) +
+                    ')'
+                  : '') || '-'
+              }}
+            </div>
+          </div>
+        </div>
+
+        <div class="full">
+          <div class="bold">Remarks</div>
+          {{ fourthForm.controls.Remarks.value || '-' }}
+        </div>
+      </div>
+    </mat-card>
+    <div>
+      <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+      <button mat-raised-button color="primary">Submit</button>
+    </div>
   </mat-step>
 </mat-stepper>

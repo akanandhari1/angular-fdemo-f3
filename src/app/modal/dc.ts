@@ -39,17 +39,17 @@ export class DC {
   IfscCode: string = '';
   PanName: string = '';
   PanNo: string = '';
-  Mou: File;
+  Mou: any;
   CreditPeriod: string = '';
-  BankDetails: File;
-  Tariff: File;
+  BankDetails: any;
+  Tariff: any;
   TariffPrice: string = '';
-  Pis: File;
-  RegistrationCertificate: File;
-  Photos: File[];
-  DCGrading: File;
-  DCAudit: File;
-  otherDocs: File;
+  Pis: any;
+  RegistrationCertificate: any;
+  Photos: any;
+  DCGrading: any;
+  DCAudit: any;
+  otherDocs: any;
   Remarks: string = '';
 
   static createForm(data: DC = new DC(), disableField = false): FormGroup {

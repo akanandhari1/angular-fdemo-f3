@@ -38,6 +38,15 @@ export class DcRegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+  resetForm(stepper: any, fromC: any) {
+    //stepper.reset();
+    fromC.resetForm();
+
+    fromC.reset();
+    fromC.markAsUntouched();
+    // this.labTests = [];
+    //fromC.setValue({}, { emitEvent: false });
+  }
   reset() {
     this.form.reset();
 
@@ -72,6 +81,16 @@ export class DcRegisterComponent implements OnInit {
     // }
   }
   captureEmit(event: any, name: any) {
-    this.form.controls[name].setValue(event);
+    this.fourthForm.controls[name].setValue(event[0]);
+  }
+  formatBytes(bytes: any, decimals?: any) {
+    if (bytes === 0) {
+      return '0 Bytes';
+    }
+    const k = 1024;
+    const dm = decimals <= 0 ? 0 : decimals || 2;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 }
