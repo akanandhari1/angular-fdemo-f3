@@ -11,10 +11,14 @@ body {
 .mat-tab-label {
   margin: 0px 5px !important;
 }
+
 .mat-tooltip {
   margin: 2px !important;
   padding-top: 2px !important ;
   padding-bottom: 2px !important;
+  overflow-y: auto !important;
+  word-break: break-all !important;
+  text-overflow: initial !important;
 }
 .mat-select-panel-wrap {
   margin-top: 30px;
