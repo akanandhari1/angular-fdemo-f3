@@ -110,7 +110,11 @@ ngx-mat-timepicker-toggle > .mat-icon-button {
 }
 .mat-standard-chip {
   font-size: 10px;
+  height: auto !important;
   min-height: 20px !important;
+}
+.mat-autocomplete-panel {
+  height: 150px;
 }
 mat-hint {
   margin-left: 24px;

@@ -55,6 +55,8 @@ import {
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
 } from '@angular/material-moment-adapter';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { QcListComponent } from './QC/qc-list/qc-list.component';
+import { QcGeneralComponent } from './QC/qc-general/qc-general.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -99,6 +101,8 @@ export const MY_FORMATS = {
     DcFetchDataComponent,
     BrowseFileComponent,
     EditDcComponent,
+    QcListComponent,
+    QcGeneralComponent,
   ],
   imports: [
     AppRouterModule,

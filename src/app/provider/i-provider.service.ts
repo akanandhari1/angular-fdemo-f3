@@ -36,6 +36,10 @@ export class IProviderService {
     { id: 15, name: 'Liver Function' },
     { id: 16, name: 'CT Calcium Scoring' },
     { id: 17, name: 'Eye Checkup' },
+    {
+      id: 18,
+      name: 'TAIA - Blood Profile B (BPB) - (Cholesterol, HDL Cholesterol, Triglycerides), FBS, Serum Crea',
+    },
   ];
   public ScheduleHistory: CustomerHistory[] = [
     {

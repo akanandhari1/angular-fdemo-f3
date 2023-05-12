@@ -32,6 +32,15 @@ export class QualityCheckHomeComponent implements OnInit {
     public fileExportService: SharedExportService,
     public confirmDialog: ConfirmationDialogService
   ) {}
+  public customerhomescreen = true;
+
+  navigate(event: any) {
+    if (event == 1) {
+      this.customerhomescreen = false;
+    } else {
+      this.customerhomescreen = true;
+    }
+  }
   ngOnInit(): void {
     this.oService.getState().subscribe((states) => {
       this.stateList = states.map((s: any) => {
@@ -44,19 +53,25 @@ export class QualityCheckHomeComponent implements OnInit {
       console.log(ELEMENT_DATA);
     });
   }
+  showCustomerDetail(data: any) {
+    this.oService.currentCustomer.next(data);
+    this.navigate(1);
+    // this.dialog.open(CustomerDetailComponent, { data: data });
+  }
   displayedColumns: string[] = [
     'TPARequestId',
     'PolicyId',
     'MemberId',
     'CustomerName',
     'CustomerNo',
-'Gender',
-'DOB',
+    'Gender',
+    'DOB',
     'InsuranceProvider',
 
     'Approve',
     'Reject',
     'Reports',
+    'View',
   ];
 
   dataSource: MatTableDataSource<InsuranceProvider>;
