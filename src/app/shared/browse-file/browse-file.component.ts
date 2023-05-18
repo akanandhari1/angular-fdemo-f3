@@ -24,10 +24,8 @@ export class BrowseFileComponent implements OnInit {
   @Input()
   set file(val: any) {
     if (val) {
-      if (this.files.length == 0) {
-        this.files.push(val);
-      }
-    } else this.files = [];
+      this.files = val;
+    }
   }
   @Output()
   public out = new EventEmitter();
@@ -55,16 +53,16 @@ export class BrowseFileComponent implements OnInit {
    * handle file from browsing
    */
   fileBrowseHandler(event: any) {
-    if (event.target.files.length > 1) {
-      this._snackBar.open('Only one file can be uploaded', 'Close', {
-        duration: 2000,
-        verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
-        horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
-      });
-      return;
-    } else {
-      this.prepareFilesList(event.target.files);
-    }
+    // if (event.target.files.length > 1) {
+    //   this._snackBar.open('Only one file can be uploaded', 'Close', {
+    //     duration: 2000,
+    //     verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
+    //     horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
+    //   });
+    //   return;
+    // } else {
+    this.prepareFilesList(event.target.files);
+    //}
   }
 
   /**
@@ -104,17 +102,17 @@ export class BrowseFileComponent implements OnInit {
    * @param files (Files List)
    */
   prepareFilesList(files: Array<any>) {
-    if (files.length === 1) {
-      for (const item of files) {
-        this.files.push(item);
+    //if (files.length === 1) {
+    for (const item of files) {
+      this.files.push(item);
 
-        item.progress = 0;
-      }
-
-      this.out.emit(this.files);
-      console.log(this.files);
-      this.uploadFilesSimulator(0);
+      item.progress = 0;
     }
+
+    this.out.emit(this.files);
+    console.log(this.files);
+    this.uploadFilesSimulator(0);
+    //}
   }
 
   /**

@@ -1,4 +1,4 @@
-<mat-stepper [linear]="false" #stepper labelPosition="bottom">
+<mat-stepper [linear]="true" #stepper labelPosition="bottom">
   <mat-step [stepControl]="firstForm">
     <form
       [formGroup]="firstForm"
@@ -1039,14 +1039,9 @@
           <div class="row">
             <div class="col-1 bold">MOU</div>
             <div class="col-2">
-              {{
-                (fourthForm.controls.Mou.value
-                  ? fourthForm.controls.Mou.value.name +
-                    '(' +
-                    formatBytes(fourthForm.controls.Mou.value.size) +
-                    ')'
-                  : '') || '-'
-              }}
+              <ng-container *ngFor="let f of fourthForm.controls.Mou.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
             </div>
           </div>
         </div>
@@ -1055,14 +1050,11 @@
           <div class="row">
             <div class="col-1 bold">Bank Details</div>
             <div class="col-2">
-              {{
-                (fourthForm.controls.BankDetails.value
-                  ? fourthForm.controls.BankDetails.value.name +
-                    '(' +
-                    formatBytes(fourthForm.controls.BankDetails.value.size) +
-                    ')'
-                  : '') || '-'
-              }}
+              <ng-container
+                *ngFor="let f of fourthForm.controls.BankDetails.value"
+              >
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
             </div>
           </div>
         </div>
@@ -1070,14 +1062,9 @@
           <div class="row">
             <div class="col-1 bold">Tariff</div>
             <div class="col-2">
-              {{
-                (fourthForm.controls.Tariff.value
-                  ? fourthForm.controls.Tariff.value.name +
-                    '(' +
-                    formatBytes(fourthForm.controls.Tariff.value.size) +
-                    ')'
-                  : '') || '-'
-              }}
+              <ng-container *ngFor="let f of fourthForm.controls.Tariff.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
             </div>
           </div>
         </div>
@@ -1085,14 +1072,9 @@
           <div class="row">
             <div class="col-1 bold">Pis</div>
             <div class="col-2">
-              {{
-                (fourthForm.controls.Pis.value
-                  ? fourthForm.controls.Pis.value.name +
-                    '(' +
-                    formatBytes(fourthForm.controls.Pis.value.size) +
-                    ')'
-                  : '') || '-'
-              }}
+              <ng-container *ngFor="let f of fourthForm.controls.Pis.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
             </div>
           </div>
         </div>
@@ -1100,16 +1082,13 @@
           <div class="row">
             <div class="col-1 bold">RegistrationCertificate</div>
             <div class="col-2">
-              {{
-                (fourthForm.controls.RegistrationCertificate.value
-                  ? fourthForm.controls.RegistrationCertificate.value.name +
-                    '(' +
-                    formatBytes(
-                      fourthForm.controls.RegistrationCertificate.value.size
-                    ) +
-                    ')'
-                  : '') || '-'
-              }}
+              <ng-container
+                *ngFor="
+                  let f of fourthForm.controls.RegistrationCertificate.value
+                "
+              >
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
             </div>
           </div>
         </div>
@@ -1117,14 +1096,9 @@
           <div class="row">
             <div class="col-1 bold">Photos</div>
             <div class="col-2">
-              {{
-                (fourthForm.controls.Photos.value
-                  ? fourthForm.controls.Photos.value.name +
-                    '(' +
-                    formatBytes(fourthForm.controls.Photos.value.size) +
-                    ')'
-                  : '') || '-'
-              }}
+              <ng-container *ngFor="let f of fourthForm.controls.Photos.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
             </div>
           </div>
         </div>
@@ -1132,14 +1106,11 @@
           <div class="row">
             <div class="col-1 bold">DC Grading</div>
             <div class="col-2">
-              {{
-                (fourthForm.controls.DCGrading.value
-                  ? fourthForm.controls.DCGrading.value.name +
-                    '(' +
-                    formatBytes(fourthForm.controls.DCGrading.value.size) +
-                    ')'
-                  : '') || '-'
-              }}
+              <ng-container
+                *ngFor="let f of fourthForm.controls.DCGrading.value"
+              >
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
             </div>
           </div>
         </div>
@@ -1147,14 +1118,9 @@
           <div class="row">
             <div class="col-1 bold">DCAudit</div>
             <div class="col-2">
-              {{
-                (fourthForm.controls.DCAudit.value
-                  ? fourthForm.controls.DCAudit.value.name +
-                    '(' +
-                    formatBytes(fourthForm.controls.DCAudit.value.size) +
-                    ')'
-                  : '') || '-'
-              }}
+              <ng-container *ngFor="let f of fourthForm.controls.DCAudit.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
             </div>
           </div>
         </div>
@@ -1162,14 +1128,11 @@
           <div class="row">
             <div class="col-1 bold">otherDocs</div>
             <div class="col-2">
-              {{
-                (fourthForm.controls.otherDocs.value
-                  ? fourthForm.controls.otherDocs.value.name +
-                    '(' +
-                    formatBytes(fourthForm.controls.otherDocs.value.size) +
-                    ')'
-                  : '') || '-'
-              }}
+              <ng-container
+                *ngFor="let f of fourthForm.controls.otherDocs.value"
+              >
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
             </div>
           </div>
         </div>

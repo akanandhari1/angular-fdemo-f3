@@ -45,8 +45,10 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
   @Output()
   public navigatetoDetail = new EventEmitter();
   displayedColumns: string[] = [
+    'actionView',
     'actionEdit',
-    'actionDelete',
+
+    'actionDownload',
     'Dc_UID',
     'DcName',
     'Grade',
@@ -132,6 +134,11 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
   showDcDetail(data: any) {
     this.dcService.currentDC.next(data);
     this.navigatetoDetail.emit(1);
+    // this.dialog.open(CustomerDetailComponent, { data: data });
+  }
+  showDcDetailView(data: any) {
+    this.dcService.currentDC.next(data);
+    this.navigatetoDetail.emit(2);
     // this.dialog.open(CustomerDetailComponent, { data: data });
   }
   createFilter(): (record: DC, filter: any) => boolean {

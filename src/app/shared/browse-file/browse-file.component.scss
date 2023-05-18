@@ -51,12 +51,15 @@ mat-label {
   animation: shake 1s;
   animation-iteration-count: infinite;
 }
+.border-file {
+  border: dashed 1px #979797;
+}
 .single-file {
   display: flex;
   padding: 0.5rem;
   justify-content: space-between;
   align-items: center;
-  border: dashed 1px #979797;
+
   margin-bottom: 1rem;
 
   .delete {
@@ -73,7 +76,7 @@ mat-label {
     justify-content: space-between;
 
     align-items: center;
-    border: dashed 1px #979797;
+    //border: dashed 1px #979797;
     margin-bottom: 1rem;
 
     .delete {

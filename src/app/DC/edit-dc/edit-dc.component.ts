@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { DcService } from 'src/app/DC/dc.service';
 import { DC } from 'src/app/modal/dc';
@@ -15,6 +15,12 @@ export class EditDcComponent implements OnInit {
   public navigatetoDetail = new EventEmitter();
   public form: FormGroup;
   public dc: DC = new DC();
+  @Input() set isView(value: any) {
+    this.oService.currentDC.subscribe((result) => {
+      this.form = DC.createForm(result, value);
+    });
+  }
+
   public stateList: any[];
   constructor(
     public oService: DcService,
@@ -22,10 +28,6 @@ export class EditDcComponent implements OnInit {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar
   ) {
-    this.oService.currentDC.subscribe((result) => {
-      this.form = DC.createForm(result);
-    });
-
     this.gService.getState().subscribe((states) => {
       this.stateList = states.map((s: any) => {
         return s.state;
@@ -34,7 +36,7 @@ export class EditDcComponent implements OnInit {
     });
   }
   back() {
-    this.navigatetoDetail.emit(2);
+    this.navigatetoDetail.emit(3);
   }
   ngOnInit(): void {}
   reset() {

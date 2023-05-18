@@ -1,9 +1,6 @@
 <mat-card>
   <section>
     <div class="flex-container" style="justify-content:start">
-      <mat-checkbox class="checkbox" [formControl]="showBlockControl"
-        >Show Blocked</mat-checkbox
-      >
       <mat-form-field>
         <input matInput placeholder="Filter" [formControl]="FilterControl" />
       </mat-form-field>
@@ -24,7 +21,13 @@
         Clear
       </button>
     </div>
-    <div class="flex-container" style="justify-content:end">
+    <div class="flex-container" style="justify-content:space-between">
+      <mat-checkbox
+        class="checkbox"
+        [formControl]="showBlockControl"
+        [color]="'primary'"
+        >Show Blocked</mat-checkbox
+      >
       <button
         mat-raised-button
         color="primary"
@@ -39,16 +42,40 @@
         <ng-container matColumnDef="actionEdit">
           <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
           <td mat-cell *matCellDef="let row">
-            <mat-icon class="pointer" (click)="showDcDetail(row)"
+            <mat-icon
+              class="pointer"
+              (click)="showDcDetail(row)"
+              #tooltip="matTooltip"
+              matTooltip="Edit"
+              matTooltipPosition="below"
               >edit</mat-icon
             >
           </td>
         </ng-container>
-        <ng-container matColumnDef="actionDelete">
+        <ng-container matColumnDef="actionView">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let row">
+            <mat-icon
+              class="pointer"
+              (click)="showDcDetailView(row)"
+              #tooltip="matTooltip"
+              matTooltip="View"
+              matTooltipPosition="below"
+              >visibility</mat-icon
+            >
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="actionDownload">
           <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
           <td mat-cell *matCellDef="let row; let index = index">
-            <mat-icon class="pointer" color="warn" (click)="show(index)"
-              >delete</mat-icon
+            <mat-icon
+              class="pointer"
+              color="primary"
+              (click)="show(index)"
+              #tooltip="matTooltip"
+              matTooltip="Download"
+              matTooltipPosition="below"
+              >sim_card_download</mat-icon
             >
           </td>
         </ng-container>

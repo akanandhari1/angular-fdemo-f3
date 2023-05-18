@@ -87,7 +87,7 @@ export class DcRegisterComponent implements OnInit {
     // }
   }
   captureEmit(event: any, name: any) {
-    this.fourthForm.controls[name].setValue(event[0]);
+    this.fourthForm.controls[name].setValue(event);
   }
   formatBytes(bytes: any, decimals?: any) {
     if (bytes === 0) {

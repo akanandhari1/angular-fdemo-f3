@@ -10,5 +10,5 @@
   </mat-tab-group>
 </ng-container>
 <ng-container *ngIf="!Dchomescreen">
-  <edit-dc (navigatetoDetail)="navigate($event)"></edit-dc>
+  <edit-dc (navigatetoDetail)="navigate($event)" [isView]="isView"></edit-dc>
 </ng-container>

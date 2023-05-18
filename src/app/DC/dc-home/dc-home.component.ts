@@ -8,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class DcHomeComponent implements OnInit {
   selectedTab = 0;
   constructor() {}
+  isView = false;
   public Dchomescreen = true;
   ngOnInit(): void {}
   navigate(event: any) {
-    if (event == 1) {
+    if (event == 1 || event == 2) {
       this.Dchomescreen = false;
     } else {
       this.Dchomescreen = true;
+    }
+    if (event == 2) {
+      console.log('view');
+      this.isView = true;
     }
     this.selectedTab = 1;
   }
