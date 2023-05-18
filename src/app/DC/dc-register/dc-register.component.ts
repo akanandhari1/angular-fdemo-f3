@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DcService } from 'src/app/DC/dc.service';
 import { DC } from 'src/app/modal/dc';
 import { IProviderService } from 'src/app/provider/i-provider.service';
+import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog.service';
 
 @Component({
   selector: 'app-dc-register',
@@ -22,6 +23,7 @@ export class DcRegisterComponent implements OnInit {
   constructor(
     public oService: DcService,
     public gService: IProviderService,
+    public confirmDialog: ConfirmationDialogService,
     private _snackBar: MatSnackBar
   ) {
     this.form = DC.createForm();
@@ -47,25 +49,29 @@ export class DcRegisterComponent implements OnInit {
     // this.labTests = [];
     //fromC.setValue({}, { emitEvent: false });
   }
-  reset() {
-    this.form.reset();
+  reset(stepper: any) {
+    this.confirmDialog
+      .confirm(
+        'Warning',
+        'Are you sure you want to exit filling the form?',
+        'Yes',
+        'Cancel',
+        false
+      )
+      .subscribe((result) => {
+        if (result) {
+          console.log(result);
+          this.form.reset();
+          stepper.reset();
+          //this.form = DC.createForm();
+          this.form.markAsUntouched();
 
-    //this.form = DC.createForm();
-    this.form.markAsUntouched();
-
-    this.form.markAsPristine();
-    this.form.setValue({} as DC, { emitEvent: false });
-    // this.form.setValue({} as DC, { emitEvent: false });
-    // Object.keys(this.form.controls).forEach((key) => {
-    //   const control = this.form.controls[key];
-    //   control.setErrors(null);
-    //   control.markAsPristine();
-    //   control.markAsUntouched();
-    //   control.clearValidators();
-    //   control.updateValueAndValidity();
-    // });
-    // setTimeout(() => this.formGroupDirective.resetForm(), 200);
+          this.form.markAsPristine();
+          this.form.setValue({} as DC, { emitEvent: false });
+        }
+      });
   }
+
   onFormSubmit() {
     console.log('form', this.firstForm);
     if (this.firstForm.invalid) {
