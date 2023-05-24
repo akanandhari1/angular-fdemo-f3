@@ -20,6 +20,8 @@ export class DcHomeComponent implements OnInit {
     if (event == 2) {
       console.log('view');
       this.isView = true;
+    } else {
+      this.isView = false;
     }
     this.selectedTab = 1;
   }

@@ -477,7 +477,7 @@
       </div>
     </mat-card>
     <div class="space"></div>
-    <mat-card>
+    <mat-card *ngIf="!isviewVa">
       <h4 class="title">Upload Documents</h4>
       <div class="flex-container">
         <mat-form-field class="flex-item">
@@ -571,6 +571,125 @@
             [file]="form.controls['otherDocs'].value"
             (out)="captureEmit($event, 'otherDocs')"
           ></browse-file>
+        </div>
+      </div>
+    </mat-card>
+    <mat-card class="mr-top" *ngIf="isviewVa">
+      <h4 class="title">Documents</h4>
+      <div class="flex-container">
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Credit Period</div>
+            <div class="col-2">
+               {{ form.controls.CreditPeriod.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Tariff Price</div>
+            <div class="col-2">
+               {{ form.controls.TariffPrice.value || '-' }}
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">MOU</div>
+            <div class="col-2">
+              <ng-container *ngFor="let f of form.controls.Mou.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Bank Details</div>
+            <div class="col-2">
+              <ng-container *ngFor="let f of form.controls.BankDetails.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Tariff</div>
+            <div class="col-2">
+              <ng-container *ngFor="let f of form.controls.Tariff.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Pis</div>
+            <div class="col-2">
+              <ng-container *ngFor="let f of form.controls.Pis.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">RegistrationCertificate</div>
+            <div class="col-2">
+              <ng-container
+                *ngFor="let f of form.controls.RegistrationCertificate.value"
+              >
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">Photos</div>
+            <div class="col-2">
+              <ng-container *ngFor="let f of form.controls.Photos.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">DC Grading</div>
+            <div class="col-2">
+              <ng-container *ngFor="let f of form.controls.DCGrading.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">DCAudit</div>
+            <div class="col-2">
+              <ng-container *ngFor="let f of form.controls.DCAudit.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+        <div class="flex-item">
+          <div class="row">
+            <div class="col-1 bold">otherDocs</div>
+            <div class="col-2">
+              <ng-container *ngFor="let f of form.controls.otherDocs.value">
+                {{ (f ? f.name + '(' + formatBytes(f.size) + ')' : '') || '-' }}
+              </ng-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="full">
+          <div class="bold">Remarks</div>
+          {{ form.controls.Remarks.value || '-' }}
         </div>
       </div>
     </mat-card>

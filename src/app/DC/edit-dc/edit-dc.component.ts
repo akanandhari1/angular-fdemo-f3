@@ -15,9 +15,11 @@ export class EditDcComponent implements OnInit {
   public navigatetoDetail = new EventEmitter();
   public form: FormGroup;
   public dc: DC = new DC();
+  isviewVa: any = false;
   @Input() set isView(value: any) {
     this.oService.currentDC.subscribe((result) => {
       this.form = DC.createForm(result, value);
+      this.isviewVa = value;
     });
   }
 
@@ -60,5 +62,15 @@ export class EditDcComponent implements OnInit {
   }
   captureEmit(event: any, name: any) {
     this.form.controls[name].setValue(event);
+  }
+  formatBytes(bytes: any, decimals?: any) {
+    if (bytes === 0) {
+      return '0 Bytes';
+    }
+    const k = 1024;
+    const dm = decimals <= 0 ? 0 : decimals || 2;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 }
