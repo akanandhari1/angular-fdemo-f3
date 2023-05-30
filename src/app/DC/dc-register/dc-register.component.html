@@ -12,12 +12,7 @@
           <mat-form-field class="fklex-item">
             <mat-label>Diagnostic Centre Name</mat-label>
             <mat-icon matPrefix>local_pharmacy</mat-icon>
-            <input
-              matInput
-              formControlName="DcName"
-              alphaNumeric
-              maxlength="100"
-            />
+            <input matInput formControlName="DcName" maxlength="100" />
             <mat-error
               ><span
                 *ngIf="
@@ -216,7 +211,12 @@
 
           <mat-form-field class="flex-item">
             <mat-label> Landline Number</mat-label>
-            <input matInput formControlName="Landline" landline />
+            <input
+              matInput
+              formControlName="Landline"
+              landline
+              onKeyPress="if(this.value.length==12) return false;"
+            />
             <mat-icon matPrefix>call</mat-icon>
           </mat-form-field>
           <mat-form-field class="flex-item">
@@ -1145,7 +1145,7 @@
     </mat-card>
     <div>
       <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-      <button mat-raised-button color="primary">Submit</button>
+      <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
       <button mat-raised-button color="primary" (click)="reset(stepper)">
         Cancel
       </button>

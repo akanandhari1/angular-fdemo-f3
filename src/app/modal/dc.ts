@@ -87,13 +87,14 @@ export class DC {
       ],
       ContactPerson1No: [
         { value: data.ContactPerson1No, disabled: disableField },
-        [Validators.required],
+        [Validators.required, Validators.minLength(10)],
       ],
       ContactPerson2Name: [
-        { value: data.ContactPerson1No, disabled: disableField },
+        { value: data.ContactPerson2Name, disabled: disableField },
       ],
       ContactPerson2No: [
         { value: data.ContactPerson2No, disabled: disableField },
+        [Validators.minLength(10)],
       ],
       Landline: [{ value: data.Landline, disabled: disableField }],
       Email: [
@@ -201,13 +202,14 @@ export class DC {
       ],
       ContactPerson1No: [
         { value: data.ContactPerson1No, disabled: disableField },
-        [Validators.required],
+        [Validators.required, Validators.minLength(10)],
       ],
       ContactPerson2Name: [
-        { value: data.ContactPerson1No, disabled: disableField },
+        { value: data.ContactPerson2Name, disabled: disableField },
       ],
       ContactPerson2No: [
         { value: data.ContactPerson2No, disabled: disableField },
+        [Validators.minLength(10)],
       ],
       Landline: [{ value: data.Landline, disabled: disableField }],
       Email: [
