@@ -30,6 +30,7 @@ import {
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { UploadReportsComponent } from '../upload-reports/upload-reports.component';
 @Component({
   selector: 'app-customer-detail',
   templateUrl: './customer-detail.component.html',
@@ -65,6 +66,8 @@ export class CustomerDetailComponent implements OnInit {
     { id: 1, name: 'Registered' },
     { id: 2, name: 'Appointment confirmed' },
   ];
+  public maxDate = new Date();
+
   public showAppoinment = true;
   disable_Labtest = true;
   constructor(
@@ -222,6 +225,14 @@ export class CustomerDetailComponent implements OnInit {
       }
     });
   }
+  uploadReports(){
+    const dialogRef = this.dialog.open(UploadReportsComponent, { data: '' });
+    dialogRef.afterClosed().subscribe((result: Appointments) => {
+      if (result) {
+      }
+    });
+  }
+  
   deleteAppoinment(i: any) {
     this.appointments.appointments.splice(i, 1);
   }

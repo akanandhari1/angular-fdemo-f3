@@ -149,6 +149,7 @@
             matInput
             formControlName="DOB"
             [matDatepicker]="releasedAtPicker"
+            [max]="maxDate"
           />
 
           <mat-datepicker-toggle matPrefix [for]="releasedAtPicker">
@@ -363,6 +364,11 @@
       <div class="flex-item">
         <button mat-raised-button color="primary" (click)="noResponse()">
           No Response
+        </button>
+      </div>
+      <div class="flex-item">
+        <button mat-raised-button color="primary" (click)="uploadReports()">
+          Upload Reports
         </button>
       </div>
       <div class="flex-item">
