@@ -51,7 +51,7 @@
         </mat-form-field>
         <mat-form-field class="flex-item">
           <mat-label>Agent Name</mat-label>
-          <input matInput formControlName="AgentName" alphabetOnly />
+          <input matInput formControlName="AgentName" alphabetwithSpecial />
           <mat-icon matPrefix> person_pin</mat-icon>
         </mat-form-field>
         <mat-form-field class="flex-item">
@@ -119,6 +119,7 @@
             matInput
             formControlName="DOB"
             [matDatepicker]="releasedAtPicker"
+            [max]="maxDate"
           />
 
           <mat-datepicker-toggle matPrefix [for]="releasedAtPicker">

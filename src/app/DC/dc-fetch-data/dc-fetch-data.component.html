@@ -89,13 +89,21 @@
           </th>
           <td mat-cell *matCellDef="let row">{{ row.DcName }}</td>
         </ng-container>
+        <ng-container matColumnDef="DateOfRegistration">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Date Of Registration
+          </th>
+          <td mat-cell *matCellDef="let row">{{ row.DateOfRegistration }}</td>
+        </ng-container>
         <ng-container matColumnDef="Grade">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Grade</th>
           <td mat-cell *matCellDef="let row">{{ row.Grade }}</td>
         </ng-container>
         <ng-container matColumnDef="Block">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Block</th>
-          <td mat-cell *matCellDef="let row">{{ row.Block }}</td>
+          <td mat-cell *matCellDef="let row">
+            {{ row.Block == true ? 'Yes' : 'No' }}
+          </td>
         </ng-container>
         <ng-container matColumnDef="Address">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
@@ -109,7 +117,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>City</th>
           <td mat-cell *matCellDef="let row">{{ row.City }}</td>
         </ng-container>
-        <ng-container matColumnDef="state">
+        <ng-container matColumnDef="State">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>State</th>
           <td mat-cell *matCellDef="let row">{{ row.State }}</td>
         </ng-container>

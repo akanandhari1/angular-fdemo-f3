@@ -1,4 +1,4 @@
-<mat-stepper [linear]="true" #stepper labelPosition="bottom">
+<mat-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="firstForm">
     <form
       [formGroup]="firstForm"
@@ -6,6 +6,8 @@
       #formDirective1="ngForm"
       autocomplete="off"
     >
+      <ng-template matStepLabel>DC Details</ng-template>
+
       <mat-card>
         <h4 class="title">DC Details</h4>
         <div class="flex-container">
@@ -16,8 +18,9 @@
             <mat-error
               ><span
                 *ngIf="
-                  firstForm.controls.DcName.touched &&
-                  firstForm.controls.DcName.invalid
+                  (firstForm.controls.DcName.touched &&
+                    firstForm.controls.DcName.invalid) ||
+                  firstForm.controls.DcName.hasError('whitespace')
                 "
               >
                 Please Enter Diagnostic Centre Name</span
@@ -63,8 +66,9 @@
             <mat-error>
               <span
                 *ngIf="
-                  firstForm.controls.Address.touched &&
-                  firstForm.controls.Address.invalid
+                  (firstForm.controls.Address.touched &&
+                    firstForm.controls.Address.invalid) ||
+                  firstForm.controls.Address.hasError('whitespace')
                 "
               >
                 Please Enter Address</span
@@ -89,8 +93,9 @@
             <mat-error
               ><span
                 *ngIf="
-                  firstForm.controls.City.touched &&
-                  firstForm.controls.City.invalid
+                  (firstForm.controls.City.touched &&
+                    firstForm.controls.City.invalid) ||
+                  firstForm.controls.City.hasError('whitespace')
                 "
               >
                 Please enter City</span
@@ -149,8 +154,9 @@
             <mat-error>
               <span
                 *ngIf="
-                  firstForm.controls.ContactPerson1Name.touched &&
-                  firstForm.controls.ContactPerson1Name.invalid
+                  (firstForm.controls.ContactPerson1Name.touched &&
+                    firstForm.controls.ContactPerson1Name.invalid) ||
+                  firstForm.controls.ContactPerson1Name.hasError('whitespace')
                 "
               >
                 Please Enter Contact Person Name</span
@@ -241,8 +247,9 @@
             <mat-error>
               <span
                 *ngIf="
-                  firstForm.controls.Spoc_Name.touched &&
-                  firstForm.controls.Spoc_Name.invalid
+                  (firstForm.controls.Spoc_Name.touched &&
+                    firstForm.controls.Spoc_Name.invalid) ||
+                  firstForm.controls.Spoc_Name.hasError('whitespace')
                 "
               >
                 Please Enter SPOC Name</span
@@ -267,6 +274,8 @@
   </mat-step>
   <mat-step [stepControl]="sceondForm">
     <form [formGroup]="sceondForm" #formDirective2="ngForm">
+      <ng-template matStepLabel>Available Features</ng-template>
+
       <mat-card>
         <h4 class="title">Available Features</h4>
         <div class="flex-container">
@@ -428,6 +437,8 @@
   </mat-step>
   <mat-step [stepControl]="thirdForm">
     <form [formGroup]="thirdForm" #formDirective3="ngForm">
+      <ng-template matStepLabel>Bank Details</ng-template>
+
       <mat-card>
         <h4 class="title">Bank Details</h4>
         <div class="flex-container">
@@ -438,8 +449,9 @@
             <mat-error
               ><span
                 *ngIf="
-                  thirdForm.controls.BankName.touched &&
-                  thirdForm.controls.BankName.invalid
+                  (thirdForm.controls.BankName.touched &&
+                    thirdForm.controls.BankName.invalid) ||
+                  thirdForm.controls.BankName.hasError('whitespace')
                 "
               >
                 Please Enter Bank Name</span
@@ -457,8 +469,9 @@
             <mat-error
               ><span
                 *ngIf="
-                  thirdForm.controls.AccHolderName.touched &&
-                  thirdForm.controls.AccHolderName.invalid
+                  (thirdForm.controls.AccHolderName.touched &&
+                    thirdForm.controls.AccHolderName.invalid) ||
+                  thirdForm.controls.AccHolderName.hasError('whitespace')
                 "
               >
                 Please Enter Account Holder Name</span
@@ -487,8 +500,9 @@
             <mat-error
               ><span
                 *ngIf="
-                  thirdForm.controls.BranchAddress.touched &&
-                  thirdForm.controls.BranchAddress.invalid
+                  (thirdForm.controls.BranchAddress.touched &&
+                    thirdForm.controls.BranchAddress.invalid) ||
+                  thirdForm.controls.BranchAddress.hasError('whitespace')
                 "
               >
                 Please Enter Branch Address</span
@@ -502,8 +516,9 @@
             <mat-error
               ><span
                 *ngIf="
-                  thirdForm.controls.IfscCode.touched &&
-                  thirdForm.controls.IfscCode.invalid
+                  (thirdForm.controls.IfscCode.touched &&
+                    thirdForm.controls.IfscCode.invalid) ||
+                  thirdForm.controls.IfscCode.hasError('whitespace')
                 "
               >
                 Please Enter IFSC Code</span
@@ -517,7 +532,9 @@
             <mat-error
               ><span
                 *ngIf="
-                  form.controls.PanName.touched && form.controls.PanName.invalid
+                  (thirdForm.controls.PanName.touched &&
+                    thirdForm.controls.PanName.invalid) ||
+                  thirdForm.controls.PanName.hasError('whitespace')
                 "
               >
                 Please Enter Name as per PAN</span
@@ -531,8 +548,9 @@
             <mat-error
               ><span
                 *ngIf="
-                  thirdForm.controls.PanNo.touched &&
-                  thirdForm.controls.PanNo.invalid
+                  (thirdForm.controls.PanNo.touched &&
+                    thirdForm.controls.PanNo.invalid) ||
+                  thirdForm.controls.PanNo.hasError('whitespace')
                 "
               >
                 Please Enter PAN Number</span
@@ -564,6 +582,8 @@
   </mat-step>
   <mat-step [stepControl]="fourthForm">
     <form [formGroup]="fourthForm" #formDirective4="ngForm">
+      <ng-template matStepLabel>Upload Documents</ng-template>
+
       <mat-card>
         <h4 class="title">Upload Documents</h4>
         <div class="flex-container">
@@ -693,6 +713,8 @@
     </form>
   </mat-step>
   <mat-step>
+    <ng-template matStepLabel matToolTip="summary">Summary</ng-template>
+
     <h4 class="title">Summary</h4>
 
     <mat-card>
@@ -1145,7 +1167,9 @@
     </mat-card>
     <div>
       <button mat-raised-button color="primary" matStepperPrevious>Back</button>
-      <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+      <button mat-raised-button color="primary" (click)="submitForm()">
+        Submit
+      </button>
       <button mat-raised-button color="primary" (click)="reset(stepper)">
         Cancel
       </button>

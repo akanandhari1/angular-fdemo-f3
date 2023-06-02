@@ -1,0 +1,31 @@
+<h4 mat-dialog-title class="title">Upload Reports</h4>
+<mat-dialog-content>
+  <div class="flex-container">
+    <div class="flex-item">
+      <browse-file
+        [title]="'Upload Reports'"
+        [file]="file"
+        (out)="captureEmit($event, 'Mou')"
+      ></browse-file>
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="flex-item">
+      <mat-form-field style="width:100%">
+        <mat-label>Comments</mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="comment"
+          rows="3"
+          maxlength="254"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</mat-dialog-content>
+<div mat-dialog-actions align="end" class="float-right">
+  <button mat-button mat-raised-button color="primary" (click)="upload()">
+    Save
+  </button>
+  <button mat-button color="primary" [mat-dialog-close]>Close</button>
+</div>

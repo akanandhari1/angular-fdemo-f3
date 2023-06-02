@@ -20,6 +20,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class RoResponseComponent implements OnInit {
   public appointments: Appointments = new Appointments();
+  public showComments: boolean = false;
+  public comment: any = '';
+
   constructor(
     public dialog: MatDialog,
     public oService: IProviderService,
@@ -34,7 +37,14 @@ export class RoResponseComponent implements OnInit {
     } else {
     }
   }
-
+  onChange(event: any) {
+    this.showComments = false;
+    console.log('va', event?.value);
+    if (event?.value.trim() == 'Others') {
+      this.showComments = true;
+      console.log(this.showComments);
+    }
+  }
   ngOnInit(): void {}
   openSnackBar(errorMessage = '', action = 'success') {
     this._snackBar.open(errorMessage, 'Close', {
@@ -45,7 +55,11 @@ export class RoResponseComponent implements OnInit {
     });
   }
   noResponse() {
-    this.openSnackBar('No Response Notified');
-    this.dialogRef.close(this.appointments);
+    if (this.showComments == true && this.comment == '') {
+      this.openSnackBar('Kindly fill all fields', 'failure');
+    } else {
+      this.openSnackBar('No Response Notified');
+      this.dialogRef.close(this.appointments);
+    }
   }
 }

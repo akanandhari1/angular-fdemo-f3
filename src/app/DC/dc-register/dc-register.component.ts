@@ -72,19 +72,19 @@ export class DcRegisterComponent implements OnInit {
       });
   }
 
-  submitForm() {
+  submitForm(){
     this._snackBar.open('Submitted successfully', 'Close', {
-      panelClass: 'success-snackbar',
-      duration: 6000,
-      verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
-      horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
-    });
+          panelClass: 'success-snackbar',
+          duration: 6000,
+          verticalPosition: 'top', // Allowed values are  'top' | 'bottom'
+          horizontalPosition: 'center', // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
+        });
   }
   onFormSubmit() {
     console.log('form', this.firstForm);
     if (this.firstForm.invalid) {
       this.firstForm.markAllAsTouched();
-    }
+    } 
     // else {
     //   this._snackBar.open('Submitted successfully', 'Close', {
     //     panelClass: 'success-snackbar',

@@ -30,6 +30,9 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class CreateRegisterComponent implements OnInit {
   readonly form = this.createForm();
+  public maxDate = new Date();
+
+  // add a day
   public SelectedLabTests: any;
   public providerList: iList[] = [
     { id: 1, name: 'SBI' },
@@ -122,7 +125,7 @@ export class CreateRegisterComponent implements OnInit {
   createForm(): FormGroup {
     return this.fb.group({
       InsuranceProvider: [null, [Validators.required]],
-      PolicyNo: [null, [Validators.required]],
+      PolicyNo: [null, [Validators.required, this.noWhitespaceValidator]],
       MemberId: [null],
       AgentName: [null],
       AgentCode: [null],
@@ -130,16 +133,16 @@ export class CreateRegisterComponent implements OnInit {
         null,
         [Validators.minLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
       ],
-      CustomerName: [null, [Validators.required]],
+      CustomerName: [null, [Validators.required, this.noWhitespaceValidator]],
       Gender: [null, [Validators.required]],
       DOB: [null, [Validators.required]],
       CutomerNo: [
         null,
         [Validators.minLength(10), Validators.pattern('^((?!(0))[0-9]{10})$')],
       ],
-      Address: [null, [Validators.required]],
-      city: [null, [Validators.required]],
-      State: [null, [Validators.required]],
+      Address: [null, [Validators.required, this.noWhitespaceValidator]],
+      city: [null, [Validators.required, this.noWhitespaceValidator]],
+      State: [null, [Validators.required, this.noWhitespaceValidator]],
       Pincode: [
         null,
         [
@@ -212,6 +215,9 @@ export class CreateRegisterComponent implements OnInit {
     requestAnimationFrame(() => {
       this.openAuto(this.matACTrigger);
     });
+  }
+  noWhitespaceValidator(control: FormControl) {
+    return (control.value || '').trim().length ? null : { whitespace: true };
   }
 
   private _filter(value: string): string[] {

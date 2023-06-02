@@ -1,8 +1,14 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 export class DC {
   Dc_UID?: string = '';
   DcName: string = '';
+  DateOfRegistration: string = '';
   Grade: string = 'Non-Premium';
   Block: boolean;
   Address: string = '';
@@ -172,7 +178,7 @@ export class DC {
     return fb.group({
       DcName: [
         { value: data.DcName, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       Grade: [
         { value: data.Grade, disabled: disableField },
@@ -181,12 +187,12 @@ export class DC {
       Block: [{ value: data.Block, disabled: disableField }],
       Address: [
         { value: data.Address, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       Location: [{ value: data.Location, disabled: disableField }],
       City: [
         { value: data.City, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       State: [
         { value: data.State, disabled: disableField },
@@ -198,7 +204,7 @@ export class DC {
       ],
       ContactPerson1Name: [
         { value: data.ContactPerson1Name, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       ContactPerson1No: [
         { value: data.ContactPerson1No, disabled: disableField },
@@ -218,7 +224,7 @@ export class DC {
       ],
       Spoc_Name: [
         { value: data.Spoc_Name, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
     });
   }
@@ -247,31 +253,31 @@ export class DC {
     return fb.group({
       BankName: [
         { value: data.BankName, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       AccHolderName: [
         { value: data.AccHolderName, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       AccountNo: [
         { value: data.AccountNo, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       BranchAddress: [
         { value: data.BranchAddress, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       IfscCode: [
         { value: data.IfscCode, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       PanName: [
         { value: data.PanName, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
       PanNo: [
         { value: data.PanNo, disabled: disableField },
-        [Validators.required],
+        [Validators.required, this.noWhitespaceValidator],
       ],
     });
   }
@@ -294,5 +300,9 @@ export class DC {
       otherDocs: [{ value: data.otherDocs, disabled: disableField }],
       Remarks: [{ value: data.Remarks, disabled: disableField }],
     });
+  }
+
+  static noWhitespaceValidator(control: FormControl) {
+    return (control.value || '').trim().length ? null : { whitespace: true };
   }
 }

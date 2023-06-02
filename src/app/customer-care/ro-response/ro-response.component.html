@@ -4,12 +4,36 @@
     <div class="flex-item">
       <mat-form-field class="flex-item">
         <mat-label>Reason</mat-label>
-        <mat-select [(ngModel)]="appointments.status">
+        <mat-select
+          [(ngModel)]="appointments.status"
+          (selectionChange)="onChange($event)"
+        >
           <mat-option [value]="'Ringing but No Response'">
             Ringing but No Response
           </mat-option>
+          <mat-option
+            [value]="
+              'Customer was not found and could not continue to follow up'
+            "
+          >
+            Customer was not found and could not continue to follow up
+          </mat-option>
           <mat-option [value]="' Wrong Number'"> Wrong Number </mat-option>
+          <mat-option [value]="' Others'"> Others</mat-option>
         </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="flex-container">
+    <div class="flex-item" *ngIf="showComments">
+      <mat-form-field style="width:100%">
+        <mat-label>If others,please specify</mat-label>
+        <textarea
+          matInput
+          [(ngModel)]="comment"
+          rows="3"
+          maxlength="254"
+        ></textarea>
       </mat-form-field>
     </div>
   </div>

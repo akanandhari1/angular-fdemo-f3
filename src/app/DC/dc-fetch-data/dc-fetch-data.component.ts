@@ -16,6 +16,7 @@ import { DeleteConfirmComponent } from 'src/app/insurance-provider/delete-confir
 import { DC } from 'src/app/modal/dc';
 import { SharedExportService } from 'src/app/shared-export.service';
 import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog.service';
+import { pick } from 'lodash';
 export type filterValues = {
   Block: boolean;
 };
@@ -47,16 +48,16 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = [
     'actionView',
     'actionEdit',
-
     'actionDownload',
     'Dc_UID',
     'DcName',
+    'DateOfRegistration',
     'Grade',
     'Block',
     'Address',
     'Location',
     'City',
-    'state',
+    'State',
     'Pincode',
     'ContactPerson1Name',
     'ContactPerson1No',
@@ -81,6 +82,7 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
     'HDFC',
     'SBI',
   ];
+
   public filterValues = {} as filterValues;
   isShowBlock = false;
   constructor(
@@ -241,9 +243,44 @@ export class DcFetchDataComponent implements OnInit, AfterViewInit {
   }
   downloadExcel() {
     let dateTim = new Date().toString();
-    this.fileExportService.exportAsExcelFile(
-      this.dataSource.filteredData,
-      'filedownload_' + dateTim
-    );
+    let data = this.dataSource.filteredData;
+    let picked = data.map((ele) => {
+      return {
+        Dc_UID: ele.Dc_UID,
+        DcName: ele.DcName,
+        DateOfRegistration: ele.DateOfRegistration,
+        Grade: ele.Grade,
+        Block: ele.Block == true ? 'Yes' : 'No',
+        Address: ele.Address,
+        Location: ele.Location,
+        City: ele.City,
+        State: ele.State,
+        Pincode: ele.Pincode,
+        ContactPerson1Name: ele.ContactPerson1Name,
+        ContactPerson1No: ele.ContactPerson1No,
+        ContactPerson2Name: ele.ContactPerson2Name,
+        ContactPerson2No: ele.ContactPerson2No,
+        Landline: ele.Landline,
+        Email: ele.Email,
+        Spoc_Name: ele.Spoc_Name,
+        MER: ele.MER,
+        X_RAY: ele.X_RAY,
+        Lab: ele.Lab,
+        ECG: ele.ECG,
+        TwoD_ECHO: ele.TwoD_ECHO,
+        Urine_Cotinine: ele.Urine_Cotinine,
+        CTMT: ele.CTMT,
+        USG: ele.USG,
+        Female_Tech: ele.Female_Tech,
+        ReportsTat: ele.ReportsTat,
+        HomeVisit: ele.HomeVisit,
+        DCVisit: ele.DCVisit,
+        TATA_AIG: ele.TATA_AIG,
+        HDFC: ele.HDFC,
+        SBI: ele.SBI,
+      };
+    });
+    console.log(picked);
+    this.fileExportService.exportAsExcelFile(picked, 'filedownload_' + dateTim);
   }
 }

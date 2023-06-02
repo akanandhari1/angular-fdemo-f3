@@ -11,6 +11,7 @@ export class DcService {
     {
       Dc_UID: 'DC112',
       DcName: 'vijaya Diagnostics',
+      DateOfRegistration: '2023/12/10',
       Grade: 'Premium',
       Block: true,
       Address: 'DC street, DC colony Ahmedabad',
@@ -27,6 +28,7 @@ export class DcService {
       Spoc_Name: 'spoc name',
       MER: 'Yes',
       X_RAY: 'Yes',
+      Lab: 'Yes',
       ECG: 'Yes',
       TwoD_ECHO: 'Yes',
       Urine_Cotinine: 'Yes',
@@ -62,6 +64,8 @@ export class DcService {
     {
       Dc_UID: 'DC113',
       DcName: 'Sai Diagnostics',
+      DateOfRegistration: '2023/11/10',
+
       Grade: 'Premium',
       Block: true,
       Address: 'DC street, DC colony Ahmedabad',
@@ -78,6 +82,7 @@ export class DcService {
       Spoc_Name: 'spoc name',
       MER: 'Yes',
       X_RAY: 'Yes',
+      Lab: 'Yes',
       ECG: 'Yes',
       TwoD_ECHO: 'Yes',
       Urine_Cotinine: 'Yes',
@@ -113,6 +118,7 @@ export class DcService {
     {
       Dc_UID: 'DC114',
       DcName: 'DK Diagnostics',
+      DateOfRegistration: '2023/11/11',
       Grade: 'Premium',
       Block: false,
       Address: 'DC street, DC colony Ahmedabad',
@@ -129,6 +135,7 @@ export class DcService {
       Spoc_Name: 'spoc name',
       MER: 'Yes',
       X_RAY: 'Yes',
+      Lab: 'Yes',
       ECG: 'Yes',
       TwoD_ECHO: 'Yes',
       Urine_Cotinine: 'Yes',
