@@ -7,4 +7,7 @@ export class user {
   id: string;
   status: string;
   lastSignIn: string;
+  Name?() {
+    return this.firstName + ' ' + this.lastName;
+  }
 }

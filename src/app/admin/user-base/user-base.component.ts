@@ -15,21 +15,28 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { CustomerHistory } from 'src/app/modal/appointment';
 import { IProviderService } from 'src/app/provider/i-provider.service';
+import { UserDetailService } from '../user-detail.service';
 @Component({
   selector: 'app-user-base',
   templateUrl: './user-base.component.html',
   styleUrls: ['./user-base.component.scss'],
 })
 export class UserBaseComponent implements OnInit {
-  ScheduleHistory: any = [];
-  displayedColumns: string[] = ['ActionDate', 'Action', 'comments', 'ActionBy'];
+  userList: any = [];
+  displayedColumns: string[] = [
+    'Name',
+    'email',
+    'role',
+    'lastSignIn',
+    'status',
+  ];
   dataSource: MatTableDataSource<CustomerHistory>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  constructor(public oService: IProviderService, public dialog: MatDialog) {
-    this.oService.getScheduleHistory().subscribe((re) => {
-      this.ScheduleHistory = re;
-      this.dataSource = new MatTableDataSource(this.ScheduleHistory);
+  constructor(public oService: UserDetailService, public dialog: MatDialog) {
+    this.oService.getUserList().subscribe((re) => {
+      this.userList = re;
+      this.dataSource = new MatTableDataSource(this.userList);
     });
   }
   ngAfterViewInit(): void {
