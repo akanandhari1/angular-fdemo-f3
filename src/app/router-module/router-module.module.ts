@@ -8,6 +8,7 @@ import { QualityCheckHomeComponent } from '../QC/quality-check-home/quality-chec
 import { LoginComponent } from '../login/login.component';
 import { AuthGuard } from '../auth.guard';
 import { DcHomeComponent } from '../DC/dc-home/dc-home.component';
+import { UserBaseComponent } from '../admin/user-base/user-base.component';
 const routes: Routes = [
   {
     path: '',
@@ -46,6 +47,12 @@ const routes: Routes = [
   {
     path: 'qc',
     component: QualityCheckHomeComponent,
+    // canActivate: [AuthGuard],
+    data: { animation: 'HomePage' },
+  },
+  {
+    path: 'userProfile',
+    component: UserBaseComponent,
     // canActivate: [AuthGuard],
     data: { animation: 'HomePage' },
   },
