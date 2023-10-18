@@ -34,25 +34,60 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             Last Login Ip and Time
           </th>
-          <td mat-cell *matCellDef="let row">{{ row.lastSignIn }}</td>
+          <td mat-cell *matCellDef="let row">
+            {{ row.lastSignIn }}
+            <br />
+            <a>View Last 15 days</a>
+          </td>
         </ng-container>
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-          <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+          <td
+            mat-cell
+            *matCellDef="let row"
+            [ngClass]="{
+              red: row.status == 'Blocked',
+              green: row.status != 'Blocked'
+            }"
+          >
+            {{ row.status }}
+          </td>
         </ng-container>
         <ng-container matColumnDef="reset">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             Reset Passsword
           </th>
           <td mat-cell *matCellDef="let row">
-            <mat-icon class="pointer">lock_reset</mat-icon>
+            <mat-icon class="pointer" (click)="resetPassword(row)"
+              >lock_reset</mat-icon
+            >
           </td>
         </ng-container>
         <ng-container matColumnDef="block">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             Block / UnBlock
           </th>
-          <td mat-cell *matCellDef="let row"></td>
+          <td mat-cell *matCellDef="let row">
+            <mat-icon
+              class="pointer red"
+              *ngIf="row.status == 'Active'"
+              (click)="block(row)"
+              >block</mat-icon
+            >
+            <mat-icon
+              class="pointer"
+              *ngIf="row.status != 'Active'"
+              (click)="unblock(row)"
+              >check_circle</mat-icon
+            >
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Edit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+          <td mat-cell *matCellDef="let row">
+            <mat-icon class="pointer" (click)="editUser(row)">edit</mat-icon>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

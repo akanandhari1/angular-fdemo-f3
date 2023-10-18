@@ -22,9 +22,6 @@ import { user } from 'src/app/modal/users';
   styleUrls: ['./user-manage.component.scss'],
 })
 export class UserManageComponent implements OnInit {
-  @Input()
-  public user: user = new user();
-
   //@ViewChild('labTestInput') labTestInput: ElementRef<HTMLInputElement>;
 
   constructor(
@@ -34,27 +31,51 @@ export class UserManageComponent implements OnInit {
     public dialogRef: MatDialogRef<UserManageComponent>,
     public fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA)
-    public appointmentedit: Appointments
+    public userDetails: any
   ) {
     this.dialogRef.disableClose = true;
+    console.log(this.userDetails);
+    this.form = this.createForm(this.userDetails);
   }
-  public form = this.createForm();
+  public form: FormGroup;
   ngOnInit(): void {}
-  createForm(): FormGroup {
-    return this.fb.group({
-      firstName: [null, [Validators.required, this.noWhitespaceValidator]],
+  createForm(item: any = null): FormGroup {
+    console.log(item);
+    if (item) {
+      console.log('SDF');
+      return this.fb.group({
+        firstName: [
+          item.firstName,
+          [Validators.required, this.noWhitespaceValidator],
+        ],
 
-      lastName: [null, [Validators.required, this.noWhitespaceValidator]],
-      email: [null, [Validators.required, Validators.email]],
-      role: [null, [Validators.required]],
-      sendAutomaticPasswordTo: [
-        'admin@shcgroup.in',
-        [Validators.required, Validators.email],
-      ],
+        lastName: [
+          item.lastName,
+          [Validators.required, this.noWhitespaceValidator],
+        ],
+        email: [item.email, [Validators.required, Validators.email]],
+        role: [item.role, [Validators.required]],
+        sendAutomaticPasswordTo: [
+          item.sendAutomaticPasswordTo,
+          [Validators.required, Validators.email],
+        ],
 
-      // status:  [null, [Validators.required, this.noWhitespaceValidator]],
-      // lastSignIn: [null, [Validators.required, this.noWhitespaceValidator]],
-    });
+        // status:  [null, [Validators.required, this.noWhitespaceValidator]],
+        // lastSignIn: [null, [Validators.required, this.noWhitespaceValidator]],
+      });
+    } else {
+      return this.fb.group({
+        firstName: [null, [Validators.required, this.noWhitespaceValidator]],
+
+        lastName: [null, [Validators.required, this.noWhitespaceValidator]],
+        email: [null, [Validators.required, Validators.email]],
+        role: [null, [Validators.required]],
+        sendAutomaticPasswordTo: [
+          'admin@shcgroup.in',
+          [Validators.required, Validators.email],
+        ],
+      });
+    }
   }
   noWhitespaceValidator(control: FormControl) {
     return (control.value || '').trim().length ? null : { whitespace: true };
