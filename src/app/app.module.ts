@@ -63,6 +63,7 @@ import { QcGeneralComponent } from './QC/qc-general/qc-general.component';
 import { UploadReportsComponent } from './customer-care/upload-reports/upload-reports.component';
 import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
 import { UserBaseComponent } from './admin/user-base/user-base.component';
+import { UserManageComponent } from './admin/user-manage/user-manage.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -113,6 +114,7 @@ export const MY_FORMATS = {
     UploadReportsComponent,
     ForgotPasswordComponent,
     UserBaseComponent,
+    UserManageComponent,
   ],
   imports: [
     AppRouterModule,

@@ -1,0 +1,83 @@
+<h4 mat-dialog-title class="title">Add a User</h4>
+<form [formGroup]="form">
+  <mat-dialog-content>
+    <div class="flex-container">
+      <mat-card class="flex-item-2">
+        <div class="flex-container">
+          <mat-form-field class="flex-item">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" alphabetwithSpecial />
+            <mat-icon matPrefix> person_pin</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="flex-container">
+          <mat-form-field class="flex-item">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" alphabetwithSpecial />
+            <mat-icon matPrefix> person_pin</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div class="flex-container">
+          <mat-form-field class="flex-item">
+            <mat-label>User Email</mat-label>
+            <input matInput formControlName="email" />
+            <mat-icon matPrefix> mail</mat-icon>
+            <mat-error>
+              <span
+                *ngIf="
+                  form.controls.email.touched && form.controls.email.invalid
+                "
+              >
+                Please Enter User Email</span
+              >
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="flex-container">
+          <mat-form-field class="flex-item">
+            <mat-label>Role</mat-label>
+            <mat-icon matPrefix>biotech</mat-icon>
+            <mat-select formControlName="role">
+              <mat-option value="Manager"> Manager </mat-option>
+              <mat-option value="Customer Care"> Customer Care </mat-option>
+              <mat-option value="Qc"> Qc </mat-option>
+              <mat-option value="Insurance Provider">
+                Insurance Provider
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="flex-container">
+          <mat-form-field class="flex-item">
+            <mat-label>Send Automatically created password to</mat-label>
+            <input matInput formControlName="sendAutomaticPasswordTo" />
+            <mat-icon matPrefix> mail</mat-icon>
+            <mat-error>
+              <span
+                *ngIf="
+                  form.controls.sendAutomaticPasswordTo.touched &&
+                  form.controls.sendAutomaticPasswordTo.invalid
+                "
+              >
+                Please Enter Email</span
+              >
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </mat-card>
+    </div>
+  </mat-dialog-content>
+  <div mat-dialog-actions align="end" class="float-right">
+    <button
+      mat-button
+      mat-raised-button
+      color="primary"
+      [disabled]="form.invalid"
+    >
+      Add User
+    </button>
+    <button mat-button color="primary" [mat-dialog-close]>Close</button>
+  </div>
+</form>

@@ -16,6 +16,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CustomerHistory } from 'src/app/modal/appointment';
 import { IProviderService } from 'src/app/provider/i-provider.service';
 import { UserDetailService } from '../user-detail.service';
+import { UserManageComponent } from '../user-manage/user-manage.component';
 @Component({
   selector: 'app-user-base',
   templateUrl: './user-base.component.html',
@@ -29,6 +30,8 @@ export class UserBaseComponent implements OnInit {
     'role',
     'lastSignIn',
     'status',
+    'reset',
+    'block',
   ];
   dataSource: MatTableDataSource<CustomerHistory>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -44,4 +47,12 @@ export class UserBaseComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
   ngOnInit(): void {}
+  createUser() {
+    const dialogRef = this.dialog.open(UserManageComponent, { data: '' });
+    dialogRef.afterClosed().subscribe((result: any) => {
+      if (result) {
+        console.log(result);
+      }
+    });
+  }
 }
