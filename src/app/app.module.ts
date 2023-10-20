@@ -64,6 +64,7 @@ import { UploadReportsComponent } from './customer-care/upload-reports/upload-re
 import { ForgotPasswordComponent } from './admin/forgot-password/forgot-password.component';
 import { UserBaseComponent } from './admin/user-base/user-base.component';
 import { UserManageComponent } from './admin/user-manage/user-manage.component';
+import { LastvisitHistoryComponent } from './admin/lastvisit-history/lastvisit-history.component';
 export const MY_FORMATS = {
   parse: {
     dateInput: 'DD/MM/YYYY',
@@ -115,6 +116,7 @@ export const MY_FORMATS = {
     ForgotPasswordComponent,
     UserBaseComponent,
     UserManageComponent,
+    LastvisitHistoryComponent,
   ],
   imports: [
     AppRouterModule,

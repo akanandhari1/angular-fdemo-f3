@@ -1,16 +1,64 @@
-<h4 mat-dialog-title class="title">Add a User</h4>
+<h4 mat-dialog-title class="title">
+  {{ userDetails ? 'User Detail' : 'Add a User' }}
+</h4>
 <form [formGroup]="form">
   <mat-dialog-content>
-    <div class="flex-container">
+    <div class="flex-container m-1">
       <mat-card class="flex-item-2">
+        <div class="flex-container" *ngIf="userDetails">
+          <div class="flex-item">
+            <button
+              mat-button
+              mat-raised-button
+              color="primary"
+              (click)="resetPassword({})"
+            >
+              <mat-icon class="pointer">lock_reset</mat-icon>
+              Reset Password
+            </button>
+          </div>
+
+          <div class="flex-item">
+            <button
+              mat-button
+              mat-raised-button
+              color="primary"
+              (click)="block(userDetails)"
+              *ngIf="userDetails.status == 'Active'"
+            >
+              <mat-icon class="pointer red">block</mat-icon>
+              Block User
+            </button>
+            <button
+              mat-button
+              mat-raised-button
+              color="primary"
+              *ngIf="userDetails.status != 'Active'"
+              (click)="unblock(userDetails)"
+            >
+              <mat-icon class="pointer">check_circle</mat-icon>
+              Unblock User
+            </button>
+          </div>
+
+          <div class="flex-item">
+            <button
+              mat-button
+              mat-raised-button
+              color="primary"
+              (click)="changeEdit()"
+            >
+              <mat-icon class="pointer">edit</mat-icon>
+              Edit
+            </button>
+          </div>
+        </div>
         <div class="flex-container">
           <mat-form-field class="flex-item">
             <mat-label>First Name</mat-label>
             <input matInput formControlName="firstName" alphabetwithSpecial />
             <mat-icon matPrefix> person_pin</mat-icon>
           </mat-form-field>
-        </div>
-        <div class="flex-container">
           <mat-form-field class="flex-item">
             <mat-label>Last Name</mat-label>
             <input matInput formControlName="lastName" alphabetwithSpecial />
@@ -33,9 +81,6 @@
               >
             </mat-error>
           </mat-form-field>
-        </div>
-
-        <div class="flex-container">
           <mat-form-field class="flex-item">
             <mat-label>Role</mat-label>
             <mat-icon matPrefix>biotech</mat-icon>
@@ -49,6 +94,7 @@
             </mat-select>
           </mat-form-field>
         </div>
+
         <div class="flex-container">
           <mat-form-field class="flex-item">
             <mat-label>Send Automatically created password to</mat-label>
@@ -65,6 +111,9 @@
               >
             </mat-error>
           </mat-form-field>
+          <div class="flex-item" *ngIf="userDetails">
+            <a (click)="lastvisit()"> View Last 15 days</a>
+          </div>
         </div>
       </mat-card>
     </div>
@@ -74,9 +123,10 @@
       mat-button
       mat-raised-button
       color="primary"
-      [disabled]="form.invalid"
+      [disabled]="form.invalid || disableEdit"
+      (click)="save()"
     >
-      Add User
+      {{ userDetails ? 'Save' : 'Add a User' }}
     </button>
     <button mat-button color="primary" [mat-dialog-close]>Close</button>
   </div>

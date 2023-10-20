@@ -18,25 +18,24 @@ import { IProviderService } from 'src/app/provider/i-provider.service';
 import { UserDetailService } from '../user-detail.service';
 import { UserManageComponent } from '../user-manage/user-manage.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog.service';
+import { user } from 'src/app/modal/users';
 @Component({
   selector: 'app-user-base',
   templateUrl: './user-base.component.html',
   styleUrls: ['./user-base.component.scss'],
 })
 export class UserBaseComponent implements OnInit {
-  userList: any = [];
+  userList: user[] = [];
   displayedColumns: string[] = [
     'Name',
     'email',
     'role',
     'lastSignIn',
     'status',
-    'reset',
-    'block',
-    'Edit',
   ];
-  dataSource: MatTableDataSource<CustomerHistory>;
+  dataSource: MatTableDataSource<user>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   constructor(
@@ -54,7 +53,15 @@ export class UserBaseComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.dataSource.filterPredicate = function (data, filter: string): boolean {
+      return (
+        data.firstName.toLowerCase().includes(filter) ||
+        data.lastName.toLowerCase().includes(filter) ||
+        data.role.toString() === filter
+      );
+    };
+  }
   createUser() {
     const dialogRef = this.dialog.open(UserManageComponent, { data: '' });
     dialogRef.afterClosed().subscribe((result: any) => {
@@ -74,43 +81,14 @@ export class UserBaseComponent implements OnInit {
       }
     });
   }
-  resetPassword(item: any) {
-    this.openSnackBar(
-      'The Password has been reset and sent to admin@shcgroup.in'
-    );
+  applyFilter(event: any) {
+    let filterValue = (event.target as HTMLInputElement).value;
+
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
-  block(item: any) {
-    this.confirmDialog
-      .confirm(
-        'Confrim Action',
-        'Are you sure want to block this user',
-        'Yes',
-        'No',
-        false
-      )
-      .subscribe((result) => {
-        if (result) {
-          item.status = 'Blocked';
-          this.openSnackBar('The user has been Blocked successfully.');
-        }
-      });
-  }
-  unblock(item: any) {
-    this.confirmDialog
-      .confirm(
-        'Confrim Action',
-        'Are you sure want to unblock this user',
-        'Yes',
-        'No',
-        false
-      )
-      .subscribe((result) => {
-        if (result) {
-          item.status = 'Active';
-          this.openSnackBar('The user has been Unblocked successfully.');
-        }
-      });
-  }
+
   openSnackBar(errorMessage = '', action = 'success') {
     this._snackBar.open(errorMessage, 'Close', {
       panelClass: action == 'success' ? 'success-snackbar' : 'failure-snackbar',

@@ -1,5 +1,5 @@
 .flex-container {
-  justify-content: center;
+  justify-content: flex-start;
 }
 .flex-item {
   justify-self: flex-end;
@@ -10,8 +10,15 @@
 .green {
   color: green;
 }
-a {
-  text-decoration: underline;
-  color: blue;
-  font-size: 10px;
+.space {
+  height: auto;
+  margin: 10px;
+}
+
+.mat-elevation-z2 {
+  width: 100%;
+  margin-top: 10px;
+}
+table {
+  width: 100%;
 }

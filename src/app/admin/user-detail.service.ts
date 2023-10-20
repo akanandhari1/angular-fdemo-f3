@@ -49,7 +49,15 @@ export class UserDetailService {
       id: '14',
     },
   ];
-
+  public lastVisit = [
+    { on: new Date(), ipAddress: '10.1.2.3', status: 'Success' },
+    { on: new Date(), ipAddress: '111.1.2.23', status: 'Success' },
+    { on: new Date(), ipAddress: '120.11.2.3', status: 'Success' },
+    { on: new Date(), ipAddress: '110.11.12.3', status: 'Success' },
+  ];
+  getlastVisitHistory(): Observable<any[]> {
+    return of(this.lastVisit);
+  }
   public getUserList(): Observable<user[]> {
     return of(this.users);
   }
