@@ -17,6 +17,15 @@ body {
 .mat-step-text-label {
   font-size: 12px !important;
 }
+footer {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 0px;
+  color: rgb(167, 173, 255);
+  align-items: center;
+  width: 98%;
+}
 .mat-tooltip {
   margin: 2px !important;
   padding-top: 2px !important ;
