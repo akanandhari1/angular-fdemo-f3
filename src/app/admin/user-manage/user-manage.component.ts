@@ -54,10 +54,7 @@ export class UserManageComponent implements OnInit {
           [Validators.required, this.noWhitespaceValidator],
         ],
 
-        lastName: [
-          item.lastName,
-          [Validators.required, this.noWhitespaceValidator],
-        ],
+        lastName: [item.lastName, [this.noWhitespaceValidator]],
         email: [item.email, [Validators.required, Validators.email]],
         role: [item.role, [Validators.required]],
         sendAutomaticPasswordTo: [
@@ -72,7 +69,7 @@ export class UserManageComponent implements OnInit {
       return this.fb.group({
         firstName: [null, [Validators.required, this.noWhitespaceValidator]],
 
-        lastName: [null, [Validators.required, this.noWhitespaceValidator]],
+        lastName: [null, [this.noWhitespaceValidator]],
         email: [null, [Validators.required, Validators.email]],
         role: [null, [Validators.required]],
         sendAutomaticPasswordTo: [
